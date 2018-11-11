@@ -29,6 +29,7 @@ const db = pgp(connectionString)
 const models = require('./models') //sequelize config
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('css'))
+app.use(express.static('js'))
 app.engine('mustache',mustacheExpress())
 app.set('views','./views')
 app.set('view engine','mustache')
@@ -37,7 +38,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.listen(3000,function(req,res){
+app.listen(3012,function(req,res){
   console.log("Server has started...")
 })
 //------------------------------------------------------
@@ -56,21 +57,69 @@ app.listen(3000,function(req,res){
 //    next()
 // })
 //-------------------------------------------
+app.get('/',function(req,res){
+  if(req.session.userid){
+    res.render('homepage',{username: req.session.username})
+  } else{
+    res.render('homepage')
+  }
+
+})
 app.post('/register',function(req,res){
   let username = req.body.username
   let password = req.body.password
   let email = req.body.email
-models.users.build({
-  username:username,
-  email:email,
-  password:password
-}).save().then(function(){
-  res.redirect('/login')
+  //------register validation by email, username????---------------
+  models.Users.findOne({
+
+    where:{
+      email : email,
+
+    }
+  }).then(function(user){
+       if(user != null){
+         res.render('register', {message : "This username/password is already taken.Please try to register with different credentials"})
+       } else {
+         models.Users.build({
+           username:username,
+           email:email,
+           password:password
+         }).save().then(function(){
+           res.redirect('/login')
+
+         })
+       }
+  })
 })
+
+
+app.get('/register',function(req,res){
+  res.render('register')
 })
 app.get('/login',function(req,res){
   res.render('login')
 })
-app.get('/',function(req,res){
-  res.render('homepage')
+app.post('/login',function(req,res){
+  let email = req.body.email
+  let password = req.body.password
+  models.Users.findOne({
+    where:{
+      email:email,
+      password:password
+    }
+  }).then(function(user){
+    if(user!=null){
+    req.session.userid = user.id
+    req.session.username = user.username
+    res.redirect('/')
+  } else{
+    res.render('login',{message: 'Invalid credentials,try again'})
+  }
+}).catch(function(error){
+  console.log(error)
+})
+})
+app.get('/logout',function(req,res){
+    req.session.destroy()
+    res.redirect('/')
 })
