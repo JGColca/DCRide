@@ -73,12 +73,18 @@ app.post('/register',function(req,res){
   models.Users.findOne({
 
     where:{
-      email : email,
-
+      $or: [
+        {
+   email: email
+ },
+ {
+   username: username
+ }
+]
     }
   }).then(function(user){
        if(user != null){
-         res.render('register', {message : "This username/password is already taken.Please try to register with different credentials"})
+         res.render('register', {message : "This username/email is already taken.Please try to register with different credentials"})
        } else {
          models.Users.build({
            username:username,
