@@ -28,8 +28,9 @@ client.connect(function(err) {
 const db = pgp(connectionString)
 const models = require('./models') //sequelize config
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static('css'))
-app.use(express.static('js'))
+app.use(express.static('public'))
+
+
 app.engine('mustache',mustacheExpress())
 app.set('views','./views')
 app.set('view engine','mustache')
@@ -59,9 +60,9 @@ app.listen(3012,function(req,res){
 //-------------------------------------------
 app.get('/',function(req,res){
   if(req.session.userid){
-    res.render('homepage',{username: req.session.username})
+    res.render('index',{username: req.session.username})
   } else{
-    res.render('homepage')
+    res.render('index')
   }
 
 })
@@ -84,7 +85,7 @@ app.post('/register',function(req,res){
     }
   }).then(function(user){
        if(user != null){
-         res.render('register', {message : "This username/email is already taken.Please try to register with different credentials"})
+         res.render('Signup', {message : "This username/email is already taken.Please try to register with different credentials"})
        } else {
          models.Users.build({
            username:username,
@@ -100,10 +101,10 @@ app.post('/register',function(req,res){
 
 
 app.get('/register',function(req,res){
-  res.render('register')
+  res.render('Signup')
 })
 app.get('/login',function(req,res){
-  res.render('login')
+  res.render('Login')
 })
 app.post('/login',function(req,res){
   let email = req.body.email
@@ -119,7 +120,7 @@ app.post('/login',function(req,res){
     req.session.username = user.username
     res.redirect('/')
   } else{
-    res.render('login',{message: 'Invalid credentials,try again'})
+    res.render('Login',{message: 'Invalid credentials, try again'})
   }
 }).catch(function(error){
   console.log(error)

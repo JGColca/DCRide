@@ -29,6 +29,7 @@ input[type=submit] {
     position: relative;
     padding: 20px;
     margin-top: 10px;
+
 }
 
 #message p {
@@ -56,4 +57,9 @@ input[type=submit] {
     position: relative;
     left: -35px;
     content: "x";
+}
+.message{
+  text-align: center;
+  color:red;
+  margin-top: 10px;
 }
