@@ -130,3 +130,84 @@ app.get('/logout',function(req,res){
     req.session.destroy()
     res.redirect('/')
 })
+
+app.use('/admin', express.static('static'))
+
+app.get('/admin', function (req, res) {
+  res.render('carController')
+})
+
+app.post('/admin', function (req, res) {
+
+  models.Cars.update({
+    currentlong: req.body.carLong1,
+    currentlat: req.body.carLat1,
+  }, {
+      where: { id: req.body.carID1 }
+    }).then(
+
+      models.Cars.update({
+        currentlong: req.body.carLong2,
+        currentlat: req.body.carLat2,
+      }, {
+          where: { id: req.body.carID2 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong3,
+        currentlat: req.body.carLat3,
+      }, {
+          where: { id: req.body.carID3 }
+        })
+    )
+  models.Cars.update({
+    currentlong: req.body.carLong4,
+    currentlat: req.body.carLat4,
+  }, {
+      where: { id: req.body.carID4 }
+    }).then(
+
+      models.Cars.update({
+        currentlong: req.body.carLong5,
+        currentlat: req.body.carLat5,
+      }, {
+          where: { id: req.body.carID5 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong6,
+        currentlat: req.body.carLat6,
+      }, {
+          where: { id: req.body.carID6 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong7,
+        currentlat: req.body.carLat7,
+      }, {
+          where: { id: req.body.carID7 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong8,
+        currentlat: req.body.carLat8,
+      }, {
+          where: { id: req.body.carID8 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong9,
+        currentlat: req.body.carLat9,
+      }, {
+          where: { id: req.body.carID9 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong10,
+        currentlat: req.body.carLat10,
+      }, {
+          where: { id: req.body.carID10 }
+        })
+    )
+
+})
