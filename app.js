@@ -59,12 +59,7 @@ app.listen(3012,function(req,res){
 // })
 //-------------------------------------------
 app.get('/',function(req,res){
-  if(req.session.userid){
-    res.render('index',{username: req.session.username})
-  } else{
-    res.render('index')
-  }
-
+res.render('index',{username: req.session.username})
 })
 app.post('/register',function(req,res){
   let username = req.body.username
@@ -129,4 +124,7 @@ app.post('/login',function(req,res){
 app.get('/logout',function(req,res){
     req.session.destroy()
     res.redirect('/')
+})
+app.get('/user/dashboard',function(req,res){
+  res.render('userDashboard')
 })

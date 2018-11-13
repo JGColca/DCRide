@@ -4,8 +4,10 @@ var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
+
 // When the user clicks on the password field, show the message box
 document.getElementById("message").style.display = "none";
+
 myInput.onfocus = function() {
   document.getElementById("message").style.display = "block";
 }
