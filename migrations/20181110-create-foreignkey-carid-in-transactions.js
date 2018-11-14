@@ -11,7 +11,11 @@ module.exports = {
                 model: 'Cars',
                 key: 'id'
             }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> bf6c7c7ab52638e0c86aa8e72ca359a7b61b668c
         )
 
     },
@@ -23,4 +27,8 @@ module.exports = {
         );
 
     }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> bf6c7c7ab52638e0c86aa8e72ca359a7b61b668c

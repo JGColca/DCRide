@@ -1,15 +1,24 @@
 {
+<<<<<<< HEAD
   "name": "DCride",
+=======
+  "name": "dcride",
+>>>>>>> bf6c7c7ab52638e0c86aa8e72ca359a7b61b668c
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+<<<<<<< HEAD
     "express-session": "^1.15.6",
     "mustache-express": "^1.2.8",
     "pg": "^7.6.1",
     "pg-promise": "^8.5.2",
+=======
+    "mustache-express": "^1.2.8",
+    "pg": "^7.6.1",
+>>>>>>> bf6c7c7ab52638e0c86aa8e72ca359a7b61b668c
     "sequelize": "^4.41.1"
   },
   "devDependencies": {},
