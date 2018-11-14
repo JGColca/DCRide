@@ -105,8 +105,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1e4ea', end
 }
 .sun {
 	background:#ff9944;
-	width:410px;
-	height:410px;
+	width:510px;
+	height:510px;
 	border-radius:50%;
 	box-shadow:0 0 50px rgba(255,153,68,0.7);
 	position:absolute;
