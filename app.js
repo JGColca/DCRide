@@ -9,8 +9,6 @@ const pgp = require('pg-promise')()
 // connection string which is used to specify the location of the database
 const connectionString = "postgres://frrnsews:EoJ-dl7OE23qas-6FFzmsPBBCs12F_bH@baasu.db.elephantsql.com:5432/frrnsews"
 var pg = require('pg');
-var http = require('http').Server(app)
-var io = require('socket.io')(http);
 
 var client = new pg.Client(connectionString);
 client.connect(function(err) {
@@ -41,9 +39,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-http.listen(3012, function () {
-  console.log('listening on *:3000');
-});
+app.listen(3012,function(req,res){
+  console.log("Server has started...")
+})
 //-----------------middleware-------------------------------------
 
 // let authenticateLogin = function(req,res,next) {
@@ -152,6 +150,7 @@ app.post('/customerLocation',function(req,res){
   // })
 
 app.post('/admin', function (req, res) {
+<<<<<<< HEAD
 
   models.Cars.update({
     currentlong: req.body.carLong1,
@@ -227,11 +226,17 @@ app.post('/admin', function (req, res) {
 })
 app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
+=======
+>>>>>>> master
 
-app.get('/admin', function (req, res) {
-  res.render('carController')
-})
+  models.Cars.update({
+    currentlong: req.body.carLong1,
+    currentlat: req.body.carLat1,
+  }, {
+      where: { id: req.body.carID1 }
+    }).then(
 
+<<<<<<< HEAD
 
 io.on('connection', function (socket) {
   socket.on('submitCarLocation', function (info) {
@@ -239,9 +244,75 @@ io.on('connection', function (socket) {
       currentlong: info.carLong,
       currentlat: info.carLat,
     }, {
+=======
+      models.Cars.update({
+        currentlong: req.body.carLong2,
+        currentlat: req.body.carLat2,
+      }, {
+          where: { id: req.body.carID2 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong3,
+        currentlat: req.body.carLat3,
+      }, {
+          where: { id: req.body.carID3 }
+        })
+    )
+  models.Cars.update({
+    currentlong: req.body.carLong4,
+    currentlat: req.body.carLat4,
+  }, {
+      where: { id: req.body.carID4 }
+    }).then(
+>>>>>>> master
 
-        where: { id: info.carID }
+      models.Cars.update({
+        currentlong: req.body.carLong5,
+        currentlat: req.body.carLat5,
+      }, {
+          where: { id: req.body.carID5 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong6,
+        currentlat: req.body.carLat6,
+      }, {
+          where: { id: req.body.carID6 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong7,
+        currentlat: req.body.carLat7,
+      }, {
+          where: { id: req.body.carID7 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong8,
+        currentlat: req.body.carLat8,
+      }, {
+          where: { id: req.body.carID8 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong9,
+        currentlat: req.body.carLat9,
+      }, {
+          where: { id: req.body.carID9 }
+        })
+    ).then(
+      models.Cars.update({
+        currentlong: req.body.carLong10,
+        currentlat: req.body.carLat10,
+      }, {
+          where: { id: req.body.carID10 }
+        })
+    )
 
+<<<<<<< HEAD
       })
   })
+=======
+>>>>>>> master
 })
