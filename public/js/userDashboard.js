@@ -1,5 +1,5 @@
 let requestButton = document.getElementById('requestButton')
-let requestContainer = document.getElementById('requestContainer')
+let requestContainer = document.getElementById('locations')
 let locationInfo=[]
 currentLocation()
 requestButton.addEventListener('click',function(){
