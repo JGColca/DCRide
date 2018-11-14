@@ -9,8 +9,11 @@ const pgp = require('pg-promise')()
 // connection string which is used to specify the location of the database
 const connectionString = "postgres://frrnsews:EoJ-dl7OE23qas-6FFzmsPBBCs12F_bH@baasu.db.elephantsql.com:5432/frrnsews"
 var pg = require('pg');
+<<<<<<< HEAD
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
+=======
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
 
 var client = new pg.Client(connectionString);
 client.connect(function(err) {
@@ -41,9 +44,15 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+<<<<<<< HEAD
 http.listen(3012, function () {
   console.log('listening on *:3000');
 });
+=======
+app.listen(3012,function(req,res){
+  console.log("Server has started...")
+})
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
 //-----------------middleware-------------------------------------
 
 // let authenticateLogin = function(req,res,next) {
@@ -149,6 +158,7 @@ app.post('/customerLocation',function(req,res){
   // })
 
 })
+<<<<<<< HEAD
 app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
 
@@ -168,3 +178,5 @@ io.on('connection', function (socket) {
       })
   })
 })
+=======
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0

@@ -1,18 +1,38 @@
 {
+<<<<<<< HEAD
   "name": "DCride",
+=======
+<<<<<<< HEAD
+  "name": "DCride",
+=======
+  "name": "dcride",
+>>>>>>> bf6c7c7ab52638e0c86aa8e72ca359a7b61b668c
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
     "express-session": "^1.15.6",
     "mustache-express": "^1.2.8",
     "pg": "^7.6.1",
     "pg-promise": "^8.5.2",
+<<<<<<< HEAD
     "sequelize": "^4.41.1",
     "socket.io": "^2.1.1",
     "socket.io-sequelize": "^1.0.1"
+=======
+=======
+    "mustache-express": "^1.2.8",
+    "pg": "^7.6.1",
+>>>>>>> bf6c7c7ab52638e0c86aa8e72ca359a7b61b668c
+    "sequelize": "^4.41.1"
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
   },
   "devDependencies": {},
   "scripts": {

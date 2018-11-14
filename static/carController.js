@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 var socket = io()
+=======
+
+
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
 let car1 = {
     carID: "1",
     carLat: 29.669025,
@@ -85,7 +90,11 @@ var map;
 
 
 function initMap() {
+<<<<<<< HEAD
     map = new google.maps.Map(document.getElementById('mapAdmin'), {
+=======
+    map = new google.maps.Map(document.getElementById('map'), {
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
         center: { lat: 29.757125 , lng: -95.355622 },
         zoom: 10,
         zoomControl: true,
@@ -110,7 +119,11 @@ function createCarInfo() {
     let currentMarker = markers[index]
         setInterval(function () {
     driveCars(currentCar, currentMarker)
+<<<<<<< HEAD
     socket.emit('submitCarLocation', currentCar)
+=======
+
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
 }, 1000)
 }
 }
@@ -210,6 +223,7 @@ function change(currentCar){
 
 
 function postCars() {
+<<<<<<< HEAD
 
     setInterval(function(){
     
@@ -303,6 +317,58 @@ postCars()
 // }
 
 
+=======
+    
+  
+setInterval(function() {
+    
+carsForm =`
+  
+<form action="/admin" id="submitForm" method="POST">
+  
+            <input type="textbox" name="carID1" value="${car1.carID}"/>
+            <input type="textbox" name="carLong1" value="${car1.carLong}"/>
+            <input type="textbox" name="carLat1" value="${car1.carLat}"/><br>
+            <input type="textbox" name="carID2" value="${car2.carID}"/>
+            <input type="textbox" name="carLong2" value="${car2.carLong}"/>
+            <input type="textbox" name="carLat2" value="${car2.carLat}"/><br>
+            <input type="textbox" name="carID3" value="${car3.carID}"/>
+            <input type="textbox" name="carLong3" value="${car3.carLong}"/>
+            <input type="textbox" name="carLat3" value="${car3.carLat}"/><br>
+            <input type="textbox" name="carID4" value="${car4.carID}"/>
+            <input type="textbox" name="carLong4" value="${car4.carLong}"/>
+            <input type="textbox" name="carLat4" value="${car4.carLat}"/><br>
+            <input type="textbox" name="carID5" value="${car5.carID}"/>
+            <input type="textbox" name="carLong5" value="${car5.carLong}"/>
+            <input type="textbox" name="carLat5" value="${car5.carLat}"/><br>
+            <input type="textbox" name="carID6" value="${car6.carID}"/>
+            <input type="textbox" name="carLong6" value="${car6.carLong}"/>
+            <input type="textbox" name="carLat6" value="${car6.carLat}"/><br>
+            <input type="textbox" name="carID7" value="${car7.carID}"/>
+            <input type="textbox" name="carLong7" value="${car7.carLong}"/>
+            <input type="textbox" name="carLat7" value="${car7.carLat}"/><br>
+            <input type="textbox" name="carID8" value="${car8.carID}"/>
+            <input type="textbox" name="carLong8" value="${car8.carLong}"/>
+            <input type="textbox" name="carLat8" value="${car8.carLat}"/><br>
+            <input type="textbox" name="carID9" value="${car9.carID}"/>
+            <input type="textbox" name="carLong9" value="${car9.carLong}"/>
+            <input type="textbox" name="carLat9" value="${car9.carLat}"/><br>
+            <input type="textbox" name="carID10" value="${car10.carID}"/>
+            <input type="textbox" name="carLong10" value="${car10.carLong}"/>
+            <input type="textbox" name="carLat10" value="${car10.carLat}"/><br>
+            </form>
+               `
+let carDiv = document.getElementById("allCarsForm")  
+carDiv.innerHTML = carsForm
+let carForm = document.getElementById("submitForm")
+//console.log(carForm)
+carForm.submit()
+}
+,5000)
+}
+
+postCars()
+>>>>>>> 5656b853d6eca027f3ac8c0e265d972a0c8e4ea0
 
 
 
