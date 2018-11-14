@@ -232,6 +232,7 @@ app.get('/admin', function (req, res) {
   res.render('carController')
 })
 
+
 io.on('connection', function (socket) {
   socket.on('submitCarLocation', function (info) {
     models.Cars.update({
