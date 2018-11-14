@@ -136,14 +136,14 @@ app.post('/customerLocation',function(req,res){
   console.log(pickupLocation)
   console.log(destination)
   console.log(pickupLocationRadio)
-  // models.Transactions.build({
-  //   pickuplocation:pickupLocation,
-  //   dropofflocation:destination,
-  //   userid:userid,
-  //   carid:2
-  // }).save().then(function(){
-  //   res.redirect('/user/dashboard')
-  //
-  // })
+  models.Transactions.build({
+    pickuplocation:pickupLocation,
+    dropofflocation:destination,
+    userid:userid,
+    carid:2
+  }).save().then(function(){
+    res.redirect('/user/dashboard')
+
+  })
 
 })
