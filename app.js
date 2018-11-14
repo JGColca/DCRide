@@ -9,6 +9,8 @@ const pgp = require('pg-promise')()
 // connection string which is used to specify the location of the database
 const connectionString = "postgres://frrnsews:EoJ-dl7OE23qas-6FFzmsPBBCs12F_bH@baasu.db.elephantsql.com:5432/frrnsews"
 var pg = require('pg');
+var http = require('http').Server(app)
+var io = require('socket.io')(http);
 
 var client = new pg.Client(connectionString);
 client.connect(function(err) {
@@ -39,9 +41,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.listen(3012,function(req,res){
-  console.log("Server has started...")
-})
+http.listen(3012, function () {
+  console.log('listening on *:3000');
+});
 //-----------------middleware-------------------------------------
 
 // let authenticateLogin = function(req,res,next) {
@@ -222,4 +224,23 @@ app.post('/admin', function (req, res) {
         })
     )
 
+})
+app.use('/admin', express.static('static'))
+app.use('/admin', express.static('public'))
+
+app.get('/admin', function (req, res) {
+  res.render('carController')
+})
+
+io.on('connection', function (socket) {
+  socket.on('submitCarLocation', function (info) {
+    models.Cars.update({
+      currentlong: info.carLong,
+      currentlat: info.carLat,
+    }, {
+
+        where: { id: info.carID }
+
+      })
+  })
 })

@@ -70,20 +70,34 @@
   padding-top: 35px;
   font-family: Montserrat, sans-serif;
 }
-body {
-  font-family: Montserrat, sans-serif;
+ #mapAdmin {
+        height: 50vh;
+        width: auto;
+        display: flex;
+      }
+ #tableAdmin {
+        height: auto;
+        width: auto;
+        display: flex;
+        overflow-x:auto;
+        overflow-y:auto;
+      }
+th {
+  padding: 25px;
+  text-align: left;
 }
 
-.pricing-item i {
-  font-size: 80px;
-  color: teal;
+td {
+  text-align: left;
+}
+tr {
+  text-align: left;
 }
 
-#pricing {
-  background-color: #e8e8e8;
-}
+tr:nth-child(even) {background-color: #272727;}
+tr:nth-child(odd) {background-color: #444040;}
 
-footer {
-  text-align: center;
-  padding-top: 15px;
+#carLocationTable {
+  table-layout: auto; 
+  width: 100%;
 }
