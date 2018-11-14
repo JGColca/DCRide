@@ -42,8 +42,8 @@ app.use(session({
 app.listen(3012,function(req,res){
   console.log("Server has started...")
 })
-//------------------------------------------------------
-//--------middleware------------------
+//-----------------middleware-------------------------------------
+
 // let authenticateLogin = function(req,res,next) {
 //
 //  // check if the user is authenticated
@@ -54,7 +54,7 @@ app.listen(3012,function(req,res){
 //  }
 //
 // }
-// app.all("/",authenticateLogin,function(req,res,next){
+// app.all("/user/*",authenticateLogin,function(req,res,next){
 //    next()
 // })
 //-------------------------------------------
@@ -126,5 +126,24 @@ app.get('/logout',function(req,res){
     res.redirect('/')
 })
 app.get('/user/dashboard',function(req,res){
-  res.render('userDashboard')
+  res.render('userDashboard',{username: req.session.username})
+})
+app.post('/customerLocation',function(req,res){
+  let pickupLocation = req.body.pickupLocation
+  let destination = req.body.destination
+  let pickupLocationRadio = req.body.pickupLocationRadio
+  let userid = req.session.userid
+  console.log(pickupLocation)
+  console.log(destination)
+  console.log(pickupLocationRadio)
+  // models.Transactions.build({
+  //   pickuplocation:pickupLocation,
+  //   dropofflocation:destination,
+  //   userid:userid,
+  //   carid:2
+  // }).save().then(function(){
+  //   res.redirect('/user/dashboard')
+  //
+  // })
+
 })
