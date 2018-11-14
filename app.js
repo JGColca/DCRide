@@ -106,6 +106,9 @@ app.get('/register',function(req,res){
 app.get('/login',function(req,res){
   res.render('Login')
 })
+app.get('/distance',function(req,res){
+  res.render('distance')
+})
 app.post('/login',function(req,res){
   let email = req.body.email
   let password = req.body.password
