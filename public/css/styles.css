@@ -70,3 +70,20 @@
   padding-top: 35px;
   font-family: Montserrat, sans-serif;
 }
+body {
+  font-family: Montserrat, sans-serif;
+}
+
+.pricing-item i {
+  font-size: 80px;
+  color: teal;
+}
+
+#pricing {
+  background-color: #e8e8e8;
+}
+
+footer {
+  text-align: center;
+  padding-top: 15px;
+}

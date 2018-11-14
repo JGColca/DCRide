@@ -11,7 +11,7 @@ module.exports = {
                 model: 'Cars',
                 key: 'id'
             }
-        
+
         )
 
     },
