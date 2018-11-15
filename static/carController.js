@@ -99,21 +99,44 @@ function initMap() {
 
 initMap()
 createMarkers()
-createCarInfo()
+sendCarInfo()
 
+setInterval(function(){
+createCarInfo()}, 1000)
+
+setInterval(function () {
+    sendCarInfo()
+}, 16000)
 
 function createCarInfo() {
-    
+
     for (index = 0; index < cars.length; index++) {
+
+        let currentCar = cars[index]
+        let currentMarker = markers[index]
         
-    let currentCar = cars[index]
-    let currentMarker = markers[index]
-        setInterval(function () {
-    driveCars(currentCar, currentMarker)
-    socket.emit('submitCarLocation', currentCar)
-}, 1000)
+            driveCars(currentCar, currentMarker)
+       
+    }
 }
+
+function sendCarInfo() {
+   
+
+    let index = 0;
+
+    let singleCar = setInterval(function () {
+        if (index < cars.length) {
+            let currentCar = cars[index]
+            
+            socket.emit('submitCarLocation', currentCar)
+            index++
+        } else {
+            clearInterval(singleCar)
+        }
+    }, 1500)
 }
+
 function createMarkers() {
     for (index = 0; index < markers.length; index++) {
         var startPosition = { lng: cars[index].carLong, lat: cars[index].carLat }
