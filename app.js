@@ -41,8 +41,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-http.listen(3012, function () {
+app.listen(3012,function(req,res){
   console.log('listening on *:3012');
+
 });
 //-----------------middleware-------------------------------------
 
