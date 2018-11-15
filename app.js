@@ -171,8 +171,7 @@ io.on('connection', function (socket) {
       })
   })
 })
-<<<<<<< HEAD
-=======
+
 
 app.get('/adminlogin', function (req, res) {
   res.render('adminlogin')
@@ -199,4 +198,3 @@ models.Admins.findOne({
     console.log(error)
   })
 })
->>>>>>> e759f03a4a337d8b5d59de08488b18b317494a82
