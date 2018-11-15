@@ -103,6 +103,7 @@ app.get('/register',function(req,res){
 app.get('/login',function(req,res){
   res.render('Login')
 })
+
 app.post('/login',function(req,res){
   let email = req.body.email
   let password = req.body.password
@@ -153,7 +154,7 @@ app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
 
 app.get('/admin', function (req, res) {
-  res.render('carController')
+  res.render('carController', { username: req.session.username })
 })
 
 io.on('connection', function (socket) {
@@ -166,5 +167,31 @@ io.on('connection', function (socket) {
         where: { id: info.carID }
 
       })
+  })
+})
+
+app.get('/adminlogin', function (req, res) {
+  res.render('adminlogin')
+})
+
+app.post('/adminlogin', function (req, res) {
+  let email = req.body.email
+  let password = req.body.password
+  
+models.Admins.findOne({
+    where: {
+      email: email,
+      password: password
+    }
+  }).then(function (admin) {
+    if (admin != null) {
+      req.session.userid = admin.id
+      req.session.username = admin.username
+      res.redirect('/admin')
+    } else {
+      res.render('adminlogin', { message: 'Invalid credentials, try again' })
+    }
+  }).catch(function (error) {
+    console.log(error)
   })
 })
