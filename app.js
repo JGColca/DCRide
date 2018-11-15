@@ -9,8 +9,6 @@ const pgp = require('pg-promise')()
 // connection string which is used to specify the location of the database
 const connectionString = "postgres://frrnsews:EoJ-dl7OE23qas-6FFzmsPBBCs12F_bH@baasu.db.elephantsql.com:5432/frrnsews"
 var pg = require('pg');
-var http = require('http').Server(app)
-var io = require('socket.io')(http);
 
 var client = new pg.Client(connectionString);
 client.connect(function(err) {
@@ -41,8 +39,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-http.listen(3012, function () {
+app.listen(3012,function(req,res){
   console.log('listening on *:3012');
+
 });
 //-----------------middleware-------------------------------------
 
@@ -152,6 +151,16 @@ res.redirect('/user/dashboard')
   })
 
 
+
+app.post('/admin', function (req, res) {
+
+  models.Cars.update({
+    currentlong: req.body.carLong1,
+    currentlat: req.body.carLat1,
+  }, {
+      where: { id: req.body.carID1 }
+    }).then(
+
 app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
 
@@ -160,16 +169,16 @@ app.get('/admin', function (req, res) {
 })
 
 io.on('connection', function (socket) {
-  socket.on('submitCarLocation', function (info) {
-    models.Cars.update({
-      currentlong: info.carLong,
-      currentlat: info.carLat,
-    }, {
+ socket.on('submitCarLocation', function (info) {
+   models.Cars.update({
+     currentlong: info.carLong,
+     currentlat: info.carLat,
+   }, {
 
-        where: { id: info.carID }
+       where: { id: info.carID }
 
-      })
-  })
+     })
+ })
 })
 
 app.get('/adminlogin', function (req, res) {
