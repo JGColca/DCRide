@@ -42,7 +42,7 @@ app.use(session({
   saveUninitialized: false
 }))
 http.listen(3012, function () {
-  console.log('listening on *:3000');
+  console.log('listening on *:3012');
 });
 //-----------------middleware-------------------------------------
 
@@ -67,7 +67,7 @@ app.post('/register',function(req,res){
   let username = req.body.username
   let password = req.body.password
   let email = req.body.email
-  //------register validation by email, username????---------------
+  //------register validation by email, username---------------
   models.Users.findOne({
 
     where:{
@@ -131,24 +131,26 @@ app.get('/user/dashboard',function(req,res){
   res.render('userDashboard',{username: req.session.username})
 })
 app.post('/customerLocation',function(req,res){
-  let pickupLocation = req.body.pickupLocation
-  let destination = req.body.destination
-  let pickupLocationRadio = req.body.pickupLocationRadio
+  let latlng1 = req.body.latlng1
+  let latlng2  = req.body.latlng2
+  let currentLatLng = req.body.currentLatLng
   let userid = req.session.userid
-  console.log(pickupLocation)
-  console.log(destination)
-  console.log(pickupLocationRadio)
-  models.Transactions.build({
-    pickuplocation:pickupLocation,
-    dropofflocation:destination,
-    userid:userid,
-    carid:2
-  }).save().then(function(){
-    res.redirect('/user/dashboard')
+  console.log(latlng1)
+  console.log(latlng2)
+  console.log(currentLatLng)
 
+
+  // models.Transactions.build({
+  //   pickuplocation:pickupLocation,
+  //   dropofflocation:destination,
+  //   userid:userid,
+  //   carid:2
+  // }).save().then(function(){
+    // res.render('customerLocation')
+res.redirect('/user/dashboard')
   })
 
-})
+
 app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
 

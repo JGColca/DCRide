@@ -1,29 +1,29 @@
 let requestButton = document.getElementById('requestButton')
 let requestContainer = document.getElementById('locations')
-let locationInfo=[]
-currentLocation()
+let form = document.getElementById('form')
+
+
+function updateUI() {
+
+  let template = `
+  <input type="radio" name='pickupLocation' id="manualLocation"/>
+  <label for="manualLocation">Enter your pickup address:<input id="locationTextBox" type="text" onfocus="initialize()" name="pickupLocation"/></label> <br/>
+  <input type="radio" id="currentLocation" name='pickupLocation'/>
+  <label for="currentLocation">Use my current location as pickup location</label>
+  <label>Enter your destination</label><input id="destination" type="text" onfocus="initialize()" name="destination"/>
+  `
+  form.insertAdjacentHTML('beforeend',template)
+let manualLocation=document.getElementById('manualLocation')
+let currentLocation= document.getElementById('currentLocation')
+
+}
+
+// if(input[name=gender]checked ==true){currentLocation()}
+
+
 requestButton.addEventListener('click',function(){
 
-let template = `
-<form action="/customerLocation" method="POST">
-<label>Enter your pickup address:</label>
-
-<input id="locationTextBox" type="text" onfocus="initialize(this)" name="pickupLocation"/>
-OR
-<input type="radio" id="radio" name="pickupLocationRadio" value="${locationInfo[0].lat},${locationInfo[0].long}"/>
-<label for="radio">Use the current location as pickup location</label>
-<label>Enter your destination</label><input id="destination" type="text" onfocus="initialize(this)" name="destination"/>
-
-<input type="submit"/>
-</form>
-`
-requestContainer.innerHTML = template
-// let currentLocationButton=document.getElementById('currentLocationButton')
-
-// currentLocationButton.addEventListener('click',function(){
-//   currentLocation()
-//
-// })
+updateUI()
 
 })
 //--------Google Map-------------
@@ -44,15 +44,26 @@ function initMap() {
   //converting those addresses to their geo locations
   google.maps.event.addListener(autocomplete1,'place_changed',function(){
     var place = autocomplete1.getPlace();
-    element.value = [place.geometry.location.lat(),place.geometry.location.lng()]
+    let getGeoLocation = `
+     <input type="hidden" name="latlng1" value="${place.geometry.location.lat()},${place.geometry.location.lng()}"/>
+    `
+      form.insertAdjacentHTML('beforeend',getGeoLocation)
+    // element.value = [place.geometry.location.lat(),place.geometry.location.lng()]
     console.log(place.geometry.location.lat())
     console.log(place.geometry.location.lng())
   })
   google.maps.event.addListener(autocomplete2,'place_changed',function(){
-    var place = autocomplete2.getPlace();
-    element.value = [place.geometry.location.lat(),place.geometry.location.lng()]
-    console.log(place.geometry.location.lat())
-    console.log(place.geometry.location.lng())
+    var place2 = autocomplete2.getPlace();
+    let getGeoLocation2 = `
+     <input type="hidden" name="latlng2" value="${place2.geometry.location.lat()},${place2.geometry.location.lng()}"/>
+     <input type="submit"/>
+
+
+    `
+    form.insertAdjacentHTML('beforeend',getGeoLocation2)
+    // element.value = [place.geometry.location.lat(),place.geometry.location.lng()]
+    console.log(place2.geometry.location.lat())
+    console.log(place2.geometry.location.lng())
   })
 
 };
@@ -68,15 +79,36 @@ function currentLocation(){
   function success(pos) {
     locationInfo=[]
     var crd = pos.coords;
-    locationInfo.push({lat:crd.latitude,long:crd.longitude})
+
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
+    let currentLatLng = `
+<input type='hidden' name='currentLatLng' value='${crd.latitude},${crd.longitude}'
+    `
+form.insertAdjacentHTML('beforeend',currentLatLng)
+
   }
 
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+  function showError(error) {
+     switch(error.code) {
+         case error.PERMISSION_DENIED:
+             alert("User denied the request for Geolocation.")
+             break;
+         case error.POSITION_UNAVAILABLE:
+             alert("Location information is unavailable.")
+             break;
+         case error.TIMEOUT:
+             alert("The request to get user location timed out.")
+             break;
+         case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.")
+             break;
+     }
   }
-navigator.geolocation.getCurrentPosition(success, error, options)
+
+
+navigator.geolocation.getCurrentPosition(success, showError, options)
 };
+//------------------------------------------------------------
