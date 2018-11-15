@@ -8,10 +8,11 @@ module.exports = {
             'carid',{
                 type : Sequelize.INTEGER,
                 allowNull : false,
+                references:{
                 model: 'Cars',
                 key: 'id'
             }
-
+}
         )
 
     },

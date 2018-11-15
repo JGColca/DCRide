@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     dropofflocation: DataTypes.STRING,
     pickupduration: DataTypes.STRING,
     tripduration: DataTypes.STRING,
-    cost: DataTypes.STRING
+    cost: DataTypes.STRING,
+    carid: DataTypes.INTEGER,
+    userid: DataTypes.INTEGER,
   }, {});
   Transactions.associate = function(models) {
     // associations can be defined here
