@@ -14,7 +14,23 @@
     background-image: url("/img/home1.png");
   }
 }
+@media (min-width: 992px) {
+ .p-bottom {
+   font-size: 21px !important;
+ }
+}
 
+@media (min-width: 992px) {
+ .p-top {
+   font-size: 25px !important;
+ }
+}
+
+@media (min-width: 992px) {
+ .col-9.offset-2 {
+   font-size: 19px !important;
+ }
+}
 .navbar-light .navbar-brand {
   background-image: url("/img/logo_transparent_background.png");
   background-repeat: no-repeat;
@@ -98,6 +114,6 @@ tr:nth-child(even) {background-color: #272727;}
 tr:nth-child(odd) {background-color: #444040;}
 
 #carLocationTable {
-  table-layout: auto; 
+  table-layout: auto;
   width: 100%;
 }

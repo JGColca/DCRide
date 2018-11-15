@@ -40,7 +40,7 @@
    <b>  Welcome {{username}} </b>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/user/dashboard">My dashboard</a>
+    <a class="dropdown-item" href="/dashboard/user">My dashboard</a>
     <a class="dropdown-item" href="/logout">Logout</a>
   </div>
 </div>
@@ -889,9 +889,12 @@ begin="20s" dur="50s" repeatCount="indefinite"   />
 
 <button id="requestButton" type="button" name="button">Request a ride</button>
 <div id="locations" class="">
-<form id="form" action="/customerLocation" method="POST">
+  <form id="form" class="form-horizontal" action="/customerLocation" method="POST">
 
-</form>
+                   </form>
+<!-- <form id="form" action="/customerLocation" method="POST">
+
+</form> -->
 </div>
 
 </div>

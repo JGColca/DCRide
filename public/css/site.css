@@ -8,7 +8,17 @@ input {
     margin-top: 6px;
     margin-bottom: 16px;
 }
+@media (min-width: 992px) {
+ .p-bottom {
+   font-size: 21px;
+ }
+}
 
+@media (min-width: 992px) {
+ .p-top {
+   font-size: 25px;
+ }
+}
 /* Style the submit button */
 input[type=submit] {
     background-color: #4CAF50;
