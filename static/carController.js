@@ -99,21 +99,44 @@ function initMap() {
 
 initMap()
 createMarkers()
-createCarInfo()
+sendCarInfo()
 
+setInterval(function(){
+createCarInfo()}, 1000)
+
+setInterval(function () {
+    sendCarInfo()
+}, 16000)
 
 function createCarInfo() {
-    
+
     for (index = 0; index < cars.length; index++) {
+
+        let currentCar = cars[index]
+        let currentMarker = markers[index]
         
-    let currentCar = cars[index]
-    let currentMarker = markers[index]
-        setInterval(function () {
-    driveCars(currentCar, currentMarker)
-    socket.emit('submitCarLocation', currentCar)
-}, 1000)
+            driveCars(currentCar, currentMarker)
+       
+    }
 }
+
+function sendCarInfo() {
+   
+
+    let index = 0;
+
+    let singleCar = setInterval(function () {
+        if (index < cars.length) {
+            let currentCar = cars[index]
+            
+            socket.emit('submitCarLocation', currentCar)
+            index++
+        } else {
+            clearInterval(singleCar)
+        }
+    }, 1500)
 }
+
 function createMarkers() {
     for (index = 0; index < markers.length; index++) {
         var startPosition = { lng: cars[index].carLong, lat: cars[index].carLat }
@@ -229,78 +252,6 @@ function postCars() {
 }
 postCars()
 
-
-
-// setInterval(function() {
-    
-// carsForm =`
-//   <table style="width:100%">
-//   <tr>
-//     <th>Car ID</th>
-//     <th>Car Longitude</th> 
-//     <th>Car Latitude</th>
-//   </tr>
-//   <tr>
-//     <td>Jill</td>
-//     <td>Smith</td>
-//     <td>50</td>
-//   </tr>
-//   <tr>
-//     <td>Eve</td>
-//     <td>Jackson</td>
-//     <td>94</td>
-//   </tr>
-//   <tr>
-//     <td>John</td>
-//     <td>Doe</td>
-//     <td>80</td>
-//   </tr>
-// </table>
-
-// <form action="/admin" id="submitForm" method="POST">
-  
-//             <input type="textbox" name="carID1" value="Car ${car1.carID}"/>
-//             <input type="textbox" name="carLong1" value="${car1.carLong}"/>
-//             <input type="textbox" name="carLat1" value="${car1.carLat}"/><br>
-//             <input type="textbox" name="carID2" value="Car ${car2.carID}"/>
-//             <input type="textbox" name="carLong2" value="${car2.carLong}"/>
-//             <input type="textbox" name="carLat2" value="${car2.carLat}"/><br>
-//             <input type="textbox" name="carID3" value="Car ${car3.carID}"/>
-//             <input type="textbox" name="carLong3" value="${car3.carLong}"/>
-//             <input type="textbox" name="carLat3" value="${car3.carLat}"/><br>
-//             <input type="textbox" name="carID4" value="Car ${car4.carID}"/>
-//             <input type="textbox" name="carLong4" value="${car4.carLong}"/>
-//             <input type="textbox" name="carLat4" value="${car4.carLat}"/><br>
-//             <input type="textbox" name="carID5" value="Car ${car5.carID}"/>
-//             <input type="textbox" name="carLong5" value="${car5.carLong}"/>
-//             <input type="textbox" name="carLat5" value="${car5.carLat}"/><br>
-//             <input type="textbox" name="carID6" value="Car ${car6.carID}"/>
-//             <input type="textbox" name="carLong6" value="${car6.carLong}"/>
-//             <input type="textbox" name="carLat6" value="${car6.carLat}"/><br>
-//             <input type="textbox" name="carID7" value="Car ${car7.carID}"/>
-//             <input type="textbox" name="carLong7" value="${car7.carLong}"/>
-//             <input type="textbox" name="carLat7" value="${car7.carLat}"/><br>
-//             <input type="textbox" name="carID8" value="Car ${car8.carID}"/>
-//             <input type="textbox" name="carLong8" value="${car8.carLong}"/>
-//             <input type="textbox" name="carLat8" value="${car8.carLat}"/><br>
-//             <input type="textbox" name="carID9" value="Car ${car9.carID}"/>
-//             <input type="textbox" name="carLong9" value="${car9.carLong}"/>
-//             <input type="textbox" name="carLat9" value="${car9.carLat}"/><br>
-//             <input type="textbox" name="carID10" value="Car ${car10.carID}"/>
-//             <input type="textbox" name="carLong10" value="${car10.carLong}"/>
-//             <input type="textbox" name="carLat10" value="${car10.carLat}"/><br>
-//             </form>
-//                `
-// let carDiv = document.getElementById("allCarsForm")  
-// carDiv.innerHTML = carsForm
-// let carForm = document.getElementById("submitForm")
-// //console.log(carForm)
-
-
-// }
-
-// ,1000)
-// }
 
 
 
