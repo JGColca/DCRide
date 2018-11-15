@@ -41,7 +41,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.listen(3012,function(req,res){
+app.listen(3000,function(req,res){
   console.log('listening on *:3012');
 
 });
@@ -153,8 +153,8 @@ res.redirect('/user/dashboard')
   })
 
 
-app.use('/admin', express.static('static'))
-app.use('/admin', express.static('public'))
+app.use(express.static('static'))
+app.use(express.static('public'))
 
 app.get('/admin', function (req, res) {
   res.render('carController', { username: req.session.username })
