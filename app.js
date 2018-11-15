@@ -61,7 +61,8 @@ http.listen(3012, function () {
 // })
 //-------------------------------------------
 app.get('/',function(req,res){
-res.render('index',{username: req.session.username})
+//res.render('index',{username: req.session.username,adminname:req.session.adminname})
+res.render('index',{username: req.session.username || req.session.adminname, isAdmin : req.session.adminname != null})
 })
 app.post('/register',function(req,res){
   let username = req.body.username
@@ -117,19 +118,50 @@ app.post('/login',function(req,res){
     req.session.userid = user.id
     req.session.username = user.username
     res.redirect('/')
-  } else{
-    res.render('Login',{message: 'Invalid credentials, try again'})
   }
+  else if (user == null){
+    models.Admins.findOne({
+      where:{
+        email:email,
+        password:password
+      }
+    }).then(function(admin){
+      if(admin!=null){
+      req.session.adminid = admin.id
+      req.session.adminname = admin.username
+      res.redirect('/')
+    } else {
+  res.render('Login',{message: 'Invalid credentials, try again'})
+  }
+
+  })
+} else{
+  res.render('Login',{message: 'Invalid credentials, try again'})
+}
 }).catch(function(error){
   console.log(error)
 })
 })
+//-----creating admin page----------------
+// models.Admins.build({
+//   username : 'beyzaAdmin',
+//   email: 'beyzaAdmin@gmail.com',
+//   password: 'Heyhey11',
+// }).save().then(function(){
+//   console.log('success')
+// })
+
 app.get('/logout',function(req,res){
     req.session.destroy()
     res.redirect('/')
 })
-app.get('/user/dashboard',function(req,res){
+app.get('/dashboard/user',function(req,res){
   res.render('userDashboard',{username: req.session.username})
+
+})
+app.get('/dashboard/admin',function(req,res){
+  res.redirect('/admin')
+
 })
 app.post('/customerLocation',function(req,res){
   let pickupGeoLocation = req.body.latlngPickupLocation
@@ -166,7 +198,7 @@ app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
 
 app.get('/admin', function (req, res) {
-  res.render('carController', { username: req.session.username })
+  res.render('carController', {username: req.session.adminname})
 })
 
 io.on('connection', function (socket) {
@@ -182,28 +214,28 @@ io.on('connection', function (socket) {
   })
 })
 
-app.get('/adminlogin', function (req, res) {
-  res.render('adminlogin')
-})
+// app.get('/adminlogin', function (req, res) {
+//   res.render('adminlogin')
+// })
 
-app.post('/adminlogin', function (req, res) {
-  let email = req.body.email
-  let password = req.body.password
+// app.post('/adminlogin', function (req, res) {
+//   let email = req.body.email
+//   let password = req.body.password
 
-models.Admins.findOne({
-    where: {
-      email: email,
-      password: password
-    }
-  }).then(function (admin) {
-    if (admin != null) {
-      req.session.userid = admin.id
-      req.session.username = admin.username
-      res.redirect('/admin')
-    } else {
-      res.render('adminlogin', { message: 'Invalid credentials, try again' })
-    }
-  }).catch(function (error) {
-    console.log(error)
-  })
-})
+// models.Admins.findOne({
+//     where: {
+//       email: email,
+//       password: password
+//     }
+//   }).then(function (admin) {
+//     if (admin != null) {
+//       req.session.userid = admin.id
+//       req.session.username = admin.username
+//       res.redirect('/admin')
+//     } else {
+//       res.render('adminlogin', { message: 'Invalid credentials, try again' })
+//     }
+//   }).catch(function (error) {
+//     console.log(error)
+//   })
+// })
