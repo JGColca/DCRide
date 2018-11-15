@@ -1,4 +1,6 @@
-function startMap(){
+function startMap(lat, long){
+
+  console.log(lat, long, 'got lat and long of user for map', lat, long)
 
   var socket = io()
   let car1 = {

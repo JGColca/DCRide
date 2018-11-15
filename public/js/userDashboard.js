@@ -110,8 +110,8 @@ form.addEventListener('submit', function(e){
         form.className = "hide"
         backgroundDiv.className = "hide"
 
-        mapDiv.className = "mapContainer" 
-        startMap()
+        mapDiv.className = "mapContainer"
+        startMap(lat, long)
 
 
 
