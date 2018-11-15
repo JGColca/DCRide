@@ -1,3 +1,6 @@
+
+
+
 function startMap(){
 
   var socket = io()
