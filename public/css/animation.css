@@ -1,3 +1,168 @@
+.demo{ background: #e3e3e3; }
+.form-bg{
+    padding: 8px;
+    background: #f0f4f7;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 3px #b3bcc1;
+    position: relative;
+}
+.form-horizontal{
+    padding: 40px 40px 0 40px;
+    background: #fff;
+    border: 3px solid #c0c9ce;
+}
+.form-bg:before,
+.form-bg:after,
+.form-horizontal:before,
+.form-horizontal:after{
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #f0f4f7;
+    border: 3px solid transparent;
+    border-right: 3px solid #c0c9ce;
+    border-bottom: 3px solid #c0c9ce;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 2;
+}
+.form-bg:after{
+    left: auto;
+    right: 5px;
+    transform: rotate(90deg);
+}
+.form-horizontal:before,
+.form-horizontal:after{
+    top: auto;
+    bottom: 5px;
+    transform: rotate(-90deg);
+}
+.form-horizontal:after{
+    left: auto;
+    right: 5px;
+    transform: rotate(-180deg);
+}
+.form-horizontal .form-group{
+    margin: 0 0 15px 0;
+    position: relative;
+}
+.form-horizontal .form-group:first-child:before,
+.form-horizontal .form-group:first-child:after{
+    content: "";
+    width: 10px;
+    height: 50px;
+    background: #fff;
+    background-image: repeating-linear-gradient( transparent, transparent 2px, #c9cbcc 2px, #c9cbcc 4px);
+    border-radius: 5px;
+    border: 2px solid #aaaeb1;
+    position: absolute;
+    bottom: -32px;
+    left: 20px;
+    z-index: 1;
+}
+.form-horizontal .form-group:first-child:after{
+    left: auto;
+    right: 20px;
+}
+.form-horizontal .form-group:last-child{
+    padding: 30px 40px;
+    margin: 30px -40px 0 -40px;
+    background: #fafafa;
+    border: 2px solid #fff;
+    border-top: 2px solid #d5dadd;
+    overflow: hidden;
+    z-index: 1;
+}
+.form-horizontal .form-group:last-child:before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../images/img-1.png") repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.form-horizontal .form-control{
+    height: 50px;
+    background: #dbe0e4;
+    border: 2px solid #b3bcc1;
+    border-radius: 8px;
+    box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.4);
+    padding: 0 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #687176;
+    position: relative;
+    transition: all 0.3s ease 0s;
+}
+.form-horizontal .form-control:focus{
+    box-shadow: none;
+    outline: 0 none;
+}
+.form-horizontal .form-control::-webkit-input-placeholder{ color: #687178 !important; }
+.form-horizontal .form-control:-moz-placeholder{ color: #687178 !important; }
+.form-horizontal .form-control::-moz-placeholder{ color: #687178 !important; }
+.form-horizontal .form-control:-ms-input-placeholder{ color: #687178 !important; }
+.form-horizontal .btn,
+.form-horizontal .btn:focus{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 30px;
+    background: #d4ec64;
+    background: linear-gradient(to top, #b8db4d, #d4ec64);
+    border: 2px solid #98bf30;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #728335;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+.form-horizontal .btn:hover{
+    background: #d4ec64;
+    background: linear-gradient(to top, #b8db4d, #d4ec64);
+}
+.form-horizontal .forgot-pass,
+.form-horizontal .signup{
+    display: inline-block;
+    padding: 8px 15px;
+    background: #eff3f6;
+    border-radius: 8px;
+    border: 2px solid #b3bcc1;
+    font-size: 17px;
+    font-weight: bold;
+    color: #677077;
+}
+.form-horizontal .signup{
+    float: right;
+    background: linear-gradient(to top, #da964d, #e5b457);
+    border-color: #bd8f31;
+    color: #fff;
+}
+@media only screen and (max-width: 480px){
+    .form-horizontal{ padding: 20px 20px 0; }
+    .form-horizontal .form-group:last-child{
+        padding: 30px 40px;
+        margin: 30px -20px 0 -20px;
+    }
+    .form-horizontal .forgot-pass,
+    .form-horizontal .signup{
+        display: block;
+        float: none;
+        font-size: 14px;
+        text-align: center;
+    }
+    .form-horizontal .forgot-pass{ margin-bottom: 10px; }
+}
+#form{
+margin-top:-100px;
+}
 #animation-container{
   transform: scale(0.9);
   zoom: 29%;

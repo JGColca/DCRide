@@ -132,13 +132,23 @@ app.get('/user/dashboard',function(req,res){
   res.render('userDashboard',{username: req.session.username})
 })
 app.post('/customerLocation',function(req,res){
-  let latlng1 = req.body.latlng1
-  let latlng2  = req.body.latlng2
-  let currentLatLng = req.body.currentLatLng
+  let pickupGeoLocation = req.body.latlngPickupLocation
+   let pickupGeoLocationArray =pickupGeoLocation.split(',')
+  let pickupLocationLat = pickupGeoLocationArray[0]
+  let pickupLocationLng = pickupGeoLocationArray[1]
+  let destinationGeoLocation = req.body.latlngDestination
+  let destinationGeoLocationArray = destinationGeoLocation.split(',')
+  let DestinationLat  = destinationGeoLocationArray[0]
+  let DestinationLng  = destinationGeoLocationArray[1]
+  let currentGeoLocation = req.body.currentLatLng
+  let currentGeoLocationArray = currentGeoLocation.split(',')
+  let currentLat = currentGeoLocationArray[0]
+  let currentLng = currentGeoLocationArray[1]
   let userid = req.session.userid
-  console.log(latlng1)
-  console.log(latlng2)
-  console.log(currentLatLng)
+  console.log(currentGeoLocation)
+  console.log(currentLat)
+    console.log(destinationGeoLocation)
+    console.log(DestinationLat)
 
 
   // models.Transactions.build({
