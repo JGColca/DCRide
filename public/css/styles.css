@@ -16,13 +16,19 @@
 }
 @media (min-width: 992px) {
  .p-bottom {
-   font-size: 21px;
+   font-size: 21px !important;
  }
 }
 
 @media (min-width: 992px) {
  .p-top {
-   font-size: 25px;
+   font-size: 25px !important;
+ }
+}
+
+@media (min-width: 992px) {
+ .col-9.offset-2 {
+   font-size: 19px !important;
  }
 }
 .navbar-light .navbar-brand {
