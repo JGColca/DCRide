@@ -40,8 +40,9 @@ app.use(session({
   saveUninitialized: false
 }))
 app.listen(3012,function(req,res){
-  console.log("Server has started...")
-})
+  console.log('listening on *:3012');
+
+});
 //-----------------middleware-------------------------------------
 
 // let authenticateLogin = function(req,res,next) {
@@ -65,7 +66,7 @@ app.post('/register',function(req,res){
   let username = req.body.username
   let password = req.body.password
   let email = req.body.email
-  //------register validation by email, username????---------------
+  //------register validation by email, username---------------
   models.Users.findOne({
 
     where:{
@@ -101,9 +102,7 @@ app.get('/register',function(req,res){
 app.get('/login',function(req,res){
   res.render('Login')
 })
-app.get('/distance',function(req,res){
-  res.render('distance')
-})
+
 app.post('/login',function(req,res){
   let email = req.body.email
   let password = req.body.password
@@ -132,22 +131,26 @@ app.get('/user/dashboard',function(req,res){
   res.render('userDashboard',{username: req.session.username})
 })
 app.post('/customerLocation',function(req,res){
-  let pickupLocation = req.body.pickupLocation
-  let destination = req.body.destination
-  let pickupLocationRadio = req.body.pickupLocationRadio
+  let latlng1 = req.body.latlng1
+  let latlng2  = req.body.latlng2
+  let currentLatLng = req.body.currentLatLng
   let userid = req.session.userid
-  console.log(pickupLocation)
-  console.log(destination)
-  console.log(pickupLocationRadio)
+  console.log(latlng1)
+  console.log(latlng2)
+  console.log(currentLatLng)
+
+
   // models.Transactions.build({
   //   pickuplocation:pickupLocation,
   //   dropofflocation:destination,
   //   userid:userid,
   //   carid:2
   // }).save().then(function(){
-  //   res.redirect('/user/dashboard')
-  //
-  // })
+    // res.render('customerLocation')
+res.redirect('/user/dashboard')
+  })
+
+
 
 app.post('/admin', function (req, res) {
 
@@ -158,68 +161,48 @@ app.post('/admin', function (req, res) {
       where: { id: req.body.carID1 }
     }).then(
 
-      models.Cars.update({
-        currentlong: req.body.carLong2,
-        currentlat: req.body.carLat2,
-      }, {
-          where: { id: req.body.carID2 }
-        })
-    ).then(
-      models.Cars.update({
-        currentlong: req.body.carLong3,
-        currentlat: req.body.carLat3,
-      }, {
-          where: { id: req.body.carID3 }
-        })
-    )
-  models.Cars.update({
-    currentlong: req.body.carLong4,
-    currentlat: req.body.carLat4,
-  }, {
-      where: { id: req.body.carID4 }
-    }).then(
+app.use('/admin', express.static('static'))
+app.use('/admin', express.static('public'))
 
-      models.Cars.update({
-        currentlong: req.body.carLong5,
-        currentlat: req.body.carLat5,
-      }, {
-          where: { id: req.body.carID5 }
-        })
-    ).then(
-      models.Cars.update({
-        currentlong: req.body.carLong6,
-        currentlat: req.body.carLat6,
-      }, {
-          where: { id: req.body.carID6 }
-        })
-    ).then(
-      models.Cars.update({
-        currentlong: req.body.carLong7,
-        currentlat: req.body.carLat7,
-      }, {
-          where: { id: req.body.carID7 }
-        })
-    ).then(
-      models.Cars.update({
-        currentlong: req.body.carLong8,
-        currentlat: req.body.carLat8,
-      }, {
-          where: { id: req.body.carID8 }
-        })
-    ).then(
-      models.Cars.update({
-        currentlong: req.body.carLong9,
-        currentlat: req.body.carLat9,
-      }, {
-          where: { id: req.body.carID9 }
-        })
-    ).then(
-      models.Cars.update({
-        currentlong: req.body.carLong10,
-        currentlat: req.body.carLat10,
-      }, {
-          where: { id: req.body.carID10 }
-        })
-    )
+app.get('/admin', function (req, res) {
+  res.render('carController', { username: req.session.username })
+})
 
+io.on('connection', function (socket) {
+ socket.on('submitCarLocation', function (info) {
+   models.Cars.update({
+     currentlong: info.carLong,
+     currentlat: info.carLat,
+   }, {
+
+       where: { id: info.carID }
+
+     })
+ })
+})
+
+app.get('/adminlogin', function (req, res) {
+  res.render('adminlogin')
+})
+
+app.post('/adminlogin', function (req, res) {
+  let email = req.body.email
+  let password = req.body.password
+
+models.Admins.findOne({
+    where: {
+      email: email,
+      password: password
+    }
+  }).then(function (admin) {
+    if (admin != null) {
+      req.session.userid = admin.id
+      req.session.username = admin.username
+      res.redirect('/admin')
+    } else {
+      res.render('adminlogin', { message: 'Invalid credentials, try again' })
+    }
+  }).catch(function (error) {
+    console.log(error)
+  })
 })
