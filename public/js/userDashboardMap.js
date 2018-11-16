@@ -1,3 +1,4 @@
+
 function startMap(lat, long){
 
   console.log(lat, long, 'got lat and long of user for map', lat, long)
@@ -83,11 +84,6 @@ function startMap(lat, long){
   var map;
 
 
-
-
-
-
-
   function initMap() {
       map = new google.maps.Map(document.getElementById('mapAdmin'), {
           center: { lat: 29.757125 , lng: -95.355622 },
@@ -164,6 +160,8 @@ function startMap(lat, long){
 
 
 
+
+
           change(currentCar)
           //console.log("Car " + currentCar.carID + " : " + currentCar.carLat + "," + currentCar.carLong)
 
@@ -173,6 +171,7 @@ function startMap(lat, long){
 
 
       }
+
 
 
 
@@ -236,24 +235,25 @@ function startMap(lat, long){
 
 
 
-  function postCars() {
+    function postCars() {
 
-      setInterval(function(){
+        setInterval(function(){
 
-          for (index = 0; index < cars.length; index ++){
+            for (index = 0; index < cars.length; index ++){
 
-          let car = cars[index]
-          let carRow = (index + 1)
+            let car = cars[index]
+            let carRow = (index + 1)
 
-          var row = document.getElementById("carLocationTable").rows[carRow].cells
+            var row = document.getElementById("carLocationTable").rows[carRow].cells
 
 
-          row[0].innerHTML = "Car " + car.carID
-          row[1].innerHTML = car.carLong
-          row[2].innerHTML = car.carLat
-      }
-  },1000)
-  }
-  postCars()
+            row[0].innerHTML = "Car " + car.carID
+            row[1].innerHTML = car.carLong
+            row[2].innerHTML = car.carLat
+        }
+    },1000)
+    }
+    postCars()
+
 
 }

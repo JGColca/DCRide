@@ -80,12 +80,62 @@ function startMap(){
 
   var map;
 
+  initMap()
+  createMarkers()
+  sendCarInfo()
+
+  setInterval(function(){
+  createCarInfo()}, 1000)
+
+  setInterval(function () {
+      sendCarInfo()
+  }, 16000)
+
+  function createCarInfo() {
+
+      for (index = 0; index < cars.length; index++) {
+
+          let currentCar = cars[index]
+          let currentMarker = markers[index]
 
 
+              driveCars(currentCar, currentMarker)
+
+      }
+  }
+
+  function sendCarInfo() {
 
 
+      let index = 0;
 
+      let singleCar = setInterval(function () {
+          if (index < cars.length) {
+              let currentCar = cars[index]
 
+              socket.emit('submitCarLocation', currentCar)
+              index++
+          } else {
+              clearInterval(singleCar)
+          }
+      }, 1500)
+  }
+
+  function createMarkers() {
+      for (index = 0; index < markers.length; index++) {
+          var startPosition = { lng: cars[index].carLong, lat: cars[index].carLat }
+          markers[index] = new SlidingMarker({
+              position: startPosition,
+
+              map: map,
+              duration: 1000,
+              easing: "linear"
+          })
+          markers[index].setDuration(1000)
+          //console.log(markers[index])
+          //console.log(cars[index].carLong)
+  }
+    
   function initMap() {
       map = new google.maps.Map(document.getElementById('mapAdmin'), {
           center: { lat: 29.757125 , lng: -95.355622 },
@@ -125,11 +175,14 @@ function startMap(){
   function sendCarInfo() {
 
 
+  function driveCars(currentCar, currentMarker) {
+
       let index = 0;
 
       let singleCar = setInterval(function () {
           if (index < cars.length) {
               let currentCar = cars[index]
+
 
               socket.emit('submitCarLocation', currentCar)
               index++
@@ -138,6 +191,7 @@ function startMap(){
           }
       }, 1500)
   }
+
 
   function createMarkers() {
       for (index = 0; index < markers.length; index++) {
@@ -171,10 +225,6 @@ function startMap(){
 
 
       }
-
-
-
-
 
 
 
