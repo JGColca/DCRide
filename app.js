@@ -4,6 +4,14 @@ const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
 const app = express()
 var session = require('express-session')
+var cors = require('cors')
+app.use(cors())
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 // import the pg-promise library which is used to connect and execute SQL on a postgres database
 const pgp = require('pg-promise')()
 // connection string which is used to specify the location of the database
@@ -62,7 +70,7 @@ app.listen(3012,function(req,res){
 // })
 //-------------------------------------------
 app.get('/',function(req,res){
-//res.render('index',{username: req.session.username,adminname:req.session.adminname})
+
 res.render('index',{username: req.session.username || req.session.adminname, isAdmin : req.session.adminname != null})
 })
 app.post('/register',function(req,res){
@@ -191,9 +199,11 @@ app.post('/customerLocation',function(req,res){
   //   carid:2
   // }).save().then(function(){
     // res.render('customerLocation')
-res.redirect('/user/dashboard')
+res.redirect('/user/customerLocation')
   })
-
+app.get('/user/customerLocation',function(req,res){
+  res.render('customerLocation')
+})
 
 app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
@@ -214,29 +224,3 @@ io.on('connection', function (socket) {
       })
   })
 })
-
-// app.get('/adminlogin', function (req, res) {
-//   res.render('adminlogin')
-// })
-
-// app.post('/adminlogin', function (req, res) {
-//   let email = req.body.email
-//   let password = req.body.password
-
-// models.Admins.findOne({
-//     where: {
-//       email: email,
-//       password: password
-//     }
-//   }).then(function (admin) {
-//     if (admin != null) {
-//       req.session.userid = admin.id
-//       req.session.username = admin.username
-//       res.redirect('/admin')
-//     } else {
-//       res.render('adminlogin', { message: 'Invalid credentials, try again' })
-//     }
-//   }).catch(function (error) {
-//     console.log(error)
-//   })
-// })
