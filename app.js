@@ -205,8 +205,8 @@ app.get('/user/customerLocation',function(req,res){
   res.render('customerLocation')
 })
 
-app.use('/admin', express.static('static'))
-app.use('/admin', express.static('public'))
+app.use(express.static('static'))
+app.use(express.static('public'))
 
 app.get('/admin', function (req, res) {
   res.render('carController', {username: req.session.adminname})
