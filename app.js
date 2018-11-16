@@ -49,7 +49,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.listen(3012,function(req,res){
+app.listen(3000,function(req,res){
   console.log('listening on *:3012');
 
 });
@@ -204,6 +204,7 @@ res.redirect('/user/customerLocation')
 app.get('/user/customerLocation',function(req,res){
   res.render('customerLocation')
 })
+
 
 app.use(express.static('static'))
 app.use(express.static('public'))
