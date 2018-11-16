@@ -125,6 +125,10 @@ tr:nth-child(odd) {background-color: #444040;}
   width: 100%;
 }
 
+.pricing-item i {
+  font-size: 60px;
+}
+
 footer {
   text-align: center;
 }
