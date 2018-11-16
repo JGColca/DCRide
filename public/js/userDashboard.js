@@ -1,23 +1,11 @@
 let requestButton = document.getElementById('requestButton')
 let requestContainer = document.getElementById('locations')
 let form = document.getElementById('form')
-let backgroundDiv = document.getElementById('requestContainer')
-let mapDiv = document.getElementById('mapAdmin')
 
 form.style.display = 'none'
 function updateUI() {
 
   let template = `
-<<<<<<< HEAD
-  <input type="radio" name='pickupLocation' id="manualLocation" onchange="test()"/>
-  <label for="manualLocation">Enter your pickup address:<input id="locationTextBox" type="text" onfocus="initialize()" name="pickupLocation" /></label> <br/>
-  <input type="radio" id="currentLocation" name='pickupLocation' onchange="test()"/>
-  <label for="currentLocation">Use my current location as pickup location</label>
-  <label>Enter your destination</label><input id="destination" type="text" onfocus="initialize()" name="destination"/>
-  <input type='hidden' id="currentLatLngHiddenField" name='currentLatLng' />
-  `
-  form.insertAdjacentHTML('beforeend',template)
-=======
   <div class="form-group">
   <input type="radio" name='pickupLocation' id="manualLocation" onchange="test()"/>
   <label for="manualLocation">Enter your pickup address:</label>
@@ -33,13 +21,10 @@ function updateUI() {
 <div class="form-group">
   <input type="radio"  id="currentLocation" name='pickupLocation' onchange="test()"/>
   <label for="currentLocation">Use my current location as pickup location</label>
-
   </div>
-
   `
   form.insertAdjacentHTML('beforeend',template)
   form.style.display = 'block'
->>>>>>> f63552f7beedf2c77277e83ede8f8e698565b5a3
   requestButton.style.display ='none'
 let manualLocation=document.getElementById('manualLocation')
 let currentLocation= document.getElementById('currentLocation')
@@ -50,19 +35,12 @@ let locationTextBox = document.getElementById('locationTextBox')
 function test(){
 
   if(manualLocation.checked){
-<<<<<<< HEAD
-    locationTextBox.style.backgroundColor = 'white'
-=======
 locationTextBox.style.backgroundColor = 'white'
->>>>>>> f63552f7beedf2c77277e83ede8f8e698565b5a3
     locationTextBox.disabled = false
   } else {
     locationTextBox.disabled = true
     locationTextBox.style.backgroundColor = '#d9d9d9'
-<<<<<<< HEAD
-=======
     locationTextBox.value = ''
->>>>>>> f63552f7beedf2c77277e83ede8f8e698565b5a3
   }
 }
 
@@ -108,7 +86,6 @@ function initMap() {
      <div class="form-group">
      <input type="submit" class="btn btn-default" onclick="requestRideButtonClick(event)"/>
      </div>
-
     `
     form.insertAdjacentHTML('beforeend',submitButton)
 
@@ -118,15 +95,9 @@ function initMap() {
 
 };
 
-<<<<<<< HEAD
-form.addEventListener('submit', function(e){
-
-  e.preventDefault()
-=======
 function requestRideButtonClick(event) {
 
   event.preventDefault()
->>>>>>> f63552f7beedf2c77277e83ede8f8e698565b5a3
 
   let useCurrentLocationRadioButton =  document.getElementById("currentLocation")
 
@@ -138,54 +109,6 @@ function requestRideButtonClick(event) {
         let currentLatLngHiddenField = document.getElementById("currentLatLngHiddenField")
         currentLatLngHiddenField.value = `${coordinates.latitude},${coordinates.longitude}`
 
-<<<<<<< HEAD
-        // got lat long from .value off of the form input, comes back as a string, separated by comma
-        // below code breaks string at comma into a tuple, then we take values at position 0 and 1 of tupple and convert them
-        // from string, back to float
-        var latLongString = currentLatLngHiddenField.value
-        var latLongTuple = latLongString.split(',')
-        var lat = latLongTuple[0]
-        var long = latLongTuple[1]
-
-        console.log('lat: ', lat, 'long: ', long)
-        form.className = "hide"
-        backgroundDiv.className = "hide"
-
-        mapDiv.className = "mapContainer"
-        startMap(lat, long)
-
-
-
-
-    })
-
-  }
-
-
-})
-
-// function requestRideButtonClick(event) {
-//
-//   event.preventDefault()
-//
-//   let useCurrentLocationRadioButton =  document.getElementById("currentLocation")
-//
-//
-//   if(useCurrentLocationRadioButton.checked) {
-//
-//     currentLocation(function(coordinates){
-//
-//         let currentLatLngHiddenField = document.getElementById("currentLatLngHiddenField")
-//         currentLatLngHiddenField.value = `${coordinates.latitude},${coordinates.longitude}`
-//
-//         form.submit()
-//     })
-//
-//   }
-//
-//
-// }
-=======
         form.submit()
     })
 
@@ -195,7 +118,6 @@ function requestRideButtonClick(event) {
 
 
 }
->>>>>>> f63552f7beedf2c77277e83ede8f8e698565b5a3
 
 //getting current location of user
 function currentLocation(completion){
