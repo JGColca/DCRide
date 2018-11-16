@@ -127,6 +127,7 @@ tr:nth-child(odd) {background-color: #444040;}
 
 .pricing-item i {
   font-size: 60px;
+  color: teal;
 }
 
 footer {
