@@ -129,16 +129,49 @@ var geocoder = new google.maps.Geocoder;
                     // outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
                     //     ': ' + results[j].distance.text + ' in ' +
                     //     results[j].duration.text + '<br>';
+                    let totalDistance = ((results[0].distance.value + results[1].distance.value)/1000).toPrecision(4)
+                    let totalTimeValue = (results[0].duration.value + results[1].duration.value)/3600
+                    let totalDuration = ((totalTimeValue-Math.trunc(totalTimeValue))*60+(Math.trunc(totalTimeValue)*60)).toPrecision(4)
+                    let totalCost = (5 + (2*totalDistance)).toPrecision(4)
+    let tripInfo= `<div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+      <div class="card-header">DURATION OF PICK UP</div>
+      <div class="card-body">
+        <p class="card-title">${destinationList[0]}<br/><b><u>to </u></b> <br/>${originList[0]}<p> <hr/>
+        <p class="card-text">${results[0].distance.text} in ${results[0].duration.text }</h3></p>
+      </div>
+      </div>
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+  <div class="card-header">DURATION OF DROP-OFF</div>
+  <div class="card-body">
+    <p class="card-text">${originList[0]} <br/><b><u>to</u> </b> <br/>${destinationList[1]}</p><hr/>
+    <p class="card-title">${results[1].distance.text} in ${results[1].duration.text }</p>
+  </div>
+</div>
+<div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+  <div class="card-header">WHOLE TRIP INFO</div>
+  <div class="card-body">
+    <h5 class="card-title">Estimated total distance /Estimated total duration</h5>
+    <p class="card-text">${totalDistance} km /${totalDuration} mins</p>
+  </div>
+</div>
+<div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+  <div class="card-header">TOTAL TRIP COST</div>
+  <div class="card-body">
+    <h5 class="card-title">Estimated total cost</h5>
+    <p class="card-text">$${totalCost}</p>
+  </div>
+</div>`
 
-                outputDiv.insertAdjacentHTML('beforeend',`<h3>Car Location(${destinationList[0]}) to Your Location(${originList[0]})(Duration of pickup): ${results[0].distance.text} in ${results[0].duration.text }</h3>`)
-                  outputDiv.insertAdjacentHTML('beforeend',`<h3>Your Location(${originList[0]}) to Your Destination(${destinationList[1]}): ${results[1].distance.text} in ${results[1].duration.text }</h3>`)
-                  let totalDistance = ((results[0].distance.value + results[1].distance.value)/1000).toPrecision(4)
-                  let totalTimeValue = (results[0].duration.value + results[1].duration.value)/3600
-                  let totalDuration = ((totalTimeValue-Math.trunc(totalTimeValue))*60+(Math.trunc(totalTimeValue)*60)).toPrecision(4)
-                  outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total distance of trip: ${totalDistance} km</h2><h2>Estimated Total Trip Duration: ${totalDuration} mins</h2>`)
-                  console.log(results)
-                  let totalCost = (5 + (2*totalDistance)).toPrecision(4)
-                  outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total cost: $${totalCost}</h2>`)
+                // outputDiv.insertAdjacentHTML('beforeend',`<h3>Car Location(${destinationList[0]}) to Your Location(${originList[0]})(Duration of pickup): ${results[0].distance.text} in ${results[0].duration.text }</h3>`)
+                //   outputDiv.insertAdjacentHTML('beforeend',`<h3>Your Location(${originList[0]}) to Your Destination(${destinationList[1]}): ${results[1].distance.text} in ${results[1].duration.text }</h3>`)
+                  // let totalDistance = ((results[0].distance.value + results[1].distance.value)/1000).toPrecision(4)
+                  // let totalTimeValue = (results[0].duration.value + results[1].duration.value)/3600
+                  // let totalDuration = ((totalTimeValue-Math.trunc(totalTimeValue))*60+(Math.trunc(totalTimeValue)*60)).toPrecision(4)
+                  // outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total distance of trip: ${totalDistance} km</h2><h2>Estimated Total Trip Duration: ${totalDuration} mins</h2>`)
+                  // console.log(results)
+                  // let totalCost = (5 + (2*totalDistance)).toPrecision(4)
+                  // outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total cost: $${totalCost}</h2>`)
+                  outputDiv.insertAdjacentHTML('beforeend',tripInfo)
                   outputDiv.insertAdjacentHTML('beforeend',`
                      <form id="databaseForm" action="/allValues" method="POST">
                      <input type="hidden" name="carLocation" value="${closestCarLatHiddenField},${closestCarLngHiddenField}"/>

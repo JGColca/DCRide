@@ -1,3 +1,5 @@
 body{
   background-image: url('/img/history.png');
+  background-repeat:repeat-y;
+  color:white;
 }

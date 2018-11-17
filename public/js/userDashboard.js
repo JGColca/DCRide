@@ -6,25 +6,27 @@ form.style.display = 'none'
 function updateUI() {
 
   let template = `
-  <div class="form-group">
-  <input type="radio" name='pickupLocation' id="manualLocation" onchange="test()"/>
-  <label for="manualLocation">Enter your pickup address:</label>
-      <input name="pickupLocation" type="text" class="form-control" placeholder="Enter your pickup location" id="locationTextBox" onfocus="initialize()">
-  </div>
-  <div class="form-group">
-  <input class="form-control" placeholder="Enter your destination" id="destination" type="text" onfocus="initialize()" name="destination"/>
-  <input type='hidden' id="currentLatLngHiddenField" name='currentLatLng'/>
-    </div>
-    <input type="hidden" name="latlngPickupLocation" id="latlngPickupLocation"/>
-  <div class="form-group">
-  <input type="hidden" name="latlngDestination" id="latlngDestination"/>
+ <div class="form-group">
+ <input type="radio"  id="currentLocation" name='pickupLocation' onchange="test()"/>
+ <label style="display:inline-block;" for="currentLocation">Use current location as pickup location</label><br>
+ <label style="display:block; text-align:center;">or</label>
+ <input type="radio" name='pickupLocation' id="manualLocation" onchange="test()"/>
+ <label style="display:inline-block;" for="manualLocation">Enter your pickup address:</label>
+     <input name="pickupLocation" type="text" class="form-control" placeholder="Enter your pickup location" id="locationTextBox" onfocus="initialize()">
+ </div>
+ <div class="form-group">
+ <input class="form-control" placeholder="Enter your destination" id="destination" type="text" onfocus="initialize()" name="destination"/>
+ <input type='hidden' id="currentLatLngHiddenField" name='currentLatLng'/>
+   </div>
+   <input type="hidden" name="latlngPickupLocation" id="latlngPickupLocation"/>
+ <div class="form-group">
+ <input type="hidden" name="latlngDestination" id="latlngDestination"/>
 <div class="form-group">
-  <input type="radio"  id="currentLocation" name='pickupLocation' onchange="test()"/>
-  <label for="currentLocation">Use my current location as pickup location</label>
 
-  </div>
 
-  `
+ </div>
+
+ `
   form.insertAdjacentHTML('beforeend',template)
   form.style.display = 'block'
   requestButton.style.display ='none'
@@ -108,7 +110,7 @@ document.getElementById('submitdiv').insertAdjacentHTML('beforeend',`<h3>Loading
 
 
   if(useCurrentLocationRadioButton.checked) {
-
+latlngPickupLocation.value = ''
     currentLocation(function(coordinates){
 
         let currentLatLngHiddenField = document.getElementById("currentLatLngHiddenField")

@@ -1,9 +1,16 @@
 body {
 	height: 100%;
 	margin: 0;
-	padding: 10%;
+	padding: 3%;
 }
 #map {
 	height: 70%;
   width:100%;
+}
+#output{
+  display:flex;
+  flex-wrap: wrap;
+}
+.card{
+  text-align: center;
 }

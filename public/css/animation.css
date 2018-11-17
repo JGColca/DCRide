@@ -67,7 +67,7 @@
     right: 20px;
 }
 .form-horizontal .form-group:last-child{
-    padding: 30px 40px;
+    /* padding: 30px 40px; */
     margin: 30px -40px 0 -40px;
     background: #fafafa;
     border: 2px solid #fff;
@@ -146,7 +146,7 @@
     color: #fff;
 }
 #submitdiv{
-  color:red;
+  color:blue;
   text-align: center;
 }
 #historyDiv{
@@ -154,6 +154,15 @@
   margin-right: 5%;
 
 }
+hr{
+  border-color:white;
+}
+#output{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 @media only screen and (max-width: 480px){
     .form-horizontal{ padding: 20px 20px 0; }
     .form-horizontal .form-group:last-child{
