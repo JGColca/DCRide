@@ -71,7 +71,12 @@ let authenticateLogin = function(req,res,next) {
 app.all("/dashboard/*",authenticateLogin,function(req,res,next){
    next()
 })
-
+app.all("/admin",authenticateLogin,function(req,res,next){
+   next()
+})
+app.all("/cars/*",authenticateLogin,function(req,res,next){
+   next()
+})
 //-------------------------------------------
 app.get('/',function(req,res){
 
@@ -316,4 +321,14 @@ if(pickupLocation == 'NaN,NaN'){
   })
 }
 
+})
+app.get('/cars/:no',function(req,res){
+  let carid = req.params.no
+  models.Transactions.findAll({where:
+  {
+    carid : carid
+  }}).then(function(transactions){
+    console.log(transactions)
+    res.render('carHistories',{transactions:transactions, username:req.session.adminname})
+  })
 })

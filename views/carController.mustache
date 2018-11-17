@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/carController.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -23,13 +24,32 @@
 </head>
 
 <body>
- <section class="d-flex flex-column justify-content-between" id="background">
+ <section  id="background">
 <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
     <div class="container-fluid"><a href="/" class="navbar-brand"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse"
             id="navcol-1">
-            <!-- <ul class="nav navbar-nav mr-auto">
-                <li role="presentation" class="nav-item"><a href="#video" class="nav-link js-scroll-trigger">How it works</a></li>
+            <ul class="nav navbar-nav mr-auto">
+                <li role="presentation" class="nav-item"><div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <b>  Car Histories </b>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+    <a class="dropdown-item" href="/cars/1">CAR 1</a>
+    <a class="dropdown-item" href="/cars/2">CAR 2</a>
+    <a class="dropdown-item" href="/cars/3">CAR 3</a>
+    <a class="dropdown-item" href="/cars/4">CAR 4</a>
+    <a class="dropdown-item" href="/cars/5">CAR 5</a>
+    <a class="dropdown-item" href="/cars/6">CAR 6</a>
+    <a class="dropdown-item" href="/cars/7">CAR 7</a>
+    <a class="dropdown-item" href="/cars/8">CAR 8</a>
+    <a class="dropdown-item" href="/cars/9">CAR 9</a>
+    <a class="dropdown-item" href="/cars/10">CAR 10</a>
+
+  </div>
+</div></li> </ul>
+<!--
                 <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Features</a></li>
                 <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Pricing</a></li>
                 <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Purchase</a></li>
@@ -56,9 +76,11 @@
         </div>
     </div>
 </nav>
+<div id="toOpenSpace">
 
+</div>
         <div id='mapAdmin'></div>
-        <div id='tableAdmin' style="overflow-x:auto;"">
+        <div id='tableAdmin' >
             <table id="carLocationTable">
                 <tr>
                     <th>Car ID</th>

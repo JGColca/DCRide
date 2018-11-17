@@ -92,7 +92,8 @@
   font-family: Montserrat, sans-serif;
 }
  #mapAdmin {
-        height: 50vh;
+   margin-top: -17px;
+        height: 50%;
         width: auto;
         display: flex;
       }
@@ -102,7 +103,13 @@
         display: flex;
         overflow-x:auto;
         overflow-y:auto;
+        margin-bottom:10%;
+        overflow-x:auto;
       }
+#toOpenSpace{
+  height:70px;
+  width: 100%;
+}
 th {
   padding: 25px;
   text-align: left;
@@ -110,6 +117,7 @@ th {
 
 td {
   text-align: left;
+  height:30px;
 }
 tr {
   text-align: left;
