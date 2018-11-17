@@ -80,12 +80,14 @@ function initMap() {
     console.log(place.geometry.location.lng())
   })
   google.maps.event.addListener(autocomplete2,'place_changed',function(){
+    if(document.getElementById('submitdiv')){
+    document.getElementById('submitdiv').innerHTML =''}
     var place2 = autocomplete2.getPlace();
     let latlngDestination = document.getElementById('latlngDestination')
     latlngDestination.value = ''
     latlngDestination.value = `${place2.geometry.location.lat()},${place2.geometry.location.lng()}`
     let submitButton = `
-     <div class="form-group">
+     <div id="submitdiv" class="form-group">
      <input type="submit" class="btn btn-default" onclick="requestRideButtonClick(event)"/>
      </div>
 
@@ -99,7 +101,7 @@ function initMap() {
 };
 
 function requestRideButtonClick(event) {
-
+document.getElementById('submitdiv').insertAdjacentHTML('beforeend',`<h3>Loading...</h3>`)
   event.preventDefault()
 
   let useCurrentLocationRadioButton =  document.getElementById("currentLocation")
@@ -113,6 +115,7 @@ function requestRideButtonClick(event) {
         currentLatLngHiddenField.value = `${coordinates.latitude},${coordinates.longitude}`
 
         form.submit()
+
     })
 
   } else {

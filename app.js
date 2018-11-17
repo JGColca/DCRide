@@ -58,19 +58,20 @@ app.listen(3012,function(req,res){
 });
 //-----------------middleware-------------------------------------
 
-// let authenticateLogin = function(req,res,next) {
-//
-//  // check if the user is authenticated
-//  if(req.session.username) {
-//    next()
-//  } else {
-//    res.redirect("/login")
-//  }
-//
-// }
-// app.all("/user/*",authenticateLogin,function(req,res,next){
-//    next()
-// })
+let authenticateLogin = function(req,res,next) {
+
+ // check if the user is authenticated
+ if(req.session.username || req.session.adminname) {
+   next()
+ } else {
+   res.redirect("/login")
+ }
+
+}
+app.all("/dashboard/*",authenticateLogin,function(req,res,next){
+   next()
+})
+
 //-------------------------------------------
 app.get('/',function(req,res){
 
@@ -228,16 +229,6 @@ console.log(closestCar)
 res.render("customerLocation",apiData)
 
 })
-
-
-  // models.Transactions.build({
-  //   pickuplocation:pickupLocation,
-  //   dropofflocation:destination,
-  //   userid:userid,
-  //   carid:2
-  // }).save().then(function(){
-    // res.render('customerLocation')
-//res.redirect('/user/customerLocation')
   })
 
 //--------------find closest car
@@ -257,24 +248,9 @@ function deg2rad(deg) {
    var d = R * c; // Distance in km
    return d;
  }
-// function distance(lat1, lon1, lat2, lon2) {
-// var p = 0.017453292519943295;    // Math.PI / 180
-// var c = Math.cos;
-// var a = 0.5 - c((lat2 - lat1) * p)/2 +
-//       c(lat1 * p) * c(lat2 * p) *
-//       (1 - c((lon2 - lon1) * p))/2;
-//
-// return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-// }
+
 //------------------
 
-app.get('/transaction',function(req,res){
-  console.log("transaction")
-  console.log(closestCar)
-
-  let apiData = {carid:closestCar[0].id,closestCarLat:closestCar[0].lat,closestCarLng: closestCar[0].lng,pickupLocationLat:pickupLocationLat, pickupLocationLng:pickupLocationLng,currentLocationLat:currentLat,currentLocationLng:currentLng,destinationLat:DestinationLat,destinationLng:DestinationLng }
-  res.json(apiData)
-})
 
 
 app.get('/user/customerLocation',function(req,res){
@@ -299,4 +275,45 @@ io.on('connection', function (socket) {
 
       })
   })
+})
+app.post('/allValues',function(req,res){
+  let carLocation = req.body.carLocation
+  let pickupLocation = req.body.pickupLocation
+  let currentLocation = req.body.currentLocation
+  let destination = req.body.destination
+  let tripDuration = req.body.tripDuration
+  let pickupDuration = req.body.pickupDuration
+  let cost = req.body.cost
+  let carid = req.body.carid
+  console.log(pickupLocation)
+  console.log(currentLocation)
+
+if(pickupLocation == 'NaN,NaN'){
+  models.Transactions.build({
+    carstartlocation: carLocation,
+    pickuplocation: currentLocation,
+    dropofflocation: destination,
+    pickupduration: pickupDuration,
+    tripduration: tripDuration,
+    cost:cost,
+    userid: req.session.userid,
+    carid: carid
+  }).save().then(function(data){
+        //?????????????????????throws error when redirected to the same page
+  })
+} else {
+  models.Transactions.build({
+    carstartlocation: carLocation,
+    pickuplocation: pickupLocation,
+    dropofflocation: destination,
+    pickupduration: pickupDuration,
+    tripduration: tripDuration,
+    cost:cost,
+    userid: req.session.userid,
+    carid: carid
+  }).save().then(function(data){
+        //?????????????????????throws error when redirected to the same page
+  })
+}
+
 })

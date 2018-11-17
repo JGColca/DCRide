@@ -1,4 +1,7 @@
 /* Style all input fields */
+#phoneDiv{
+  background-color: #bfbfbf;
+}
 input {
     width: 100%;
     padding: 12px;

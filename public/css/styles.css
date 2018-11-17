@@ -8,7 +8,12 @@
   color: rgb(255,255,255);
   font-family: Montserrat, sans-serif;
 }
-
+#phoneDiv{
+  background-color: #d9d9d9;
+}
+.copyright{
+  text-align:center;
+}
 @media (min-width: 768px) {
   #background {
     background-image: url("/img/home1.png");

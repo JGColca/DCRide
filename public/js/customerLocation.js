@@ -134,11 +134,29 @@ var geocoder = new google.maps.Geocoder;
                   outputDiv.insertAdjacentHTML('beforeend',`<h3>Your Location(${originList[0]}) to Your Destination(${destinationList[1]}): ${results[1].distance.text} in ${results[1].duration.text }</h3>`)
                   let totalDistance = ((results[0].distance.value + results[1].distance.value)/1000).toPrecision(4)
                   let totalTimeValue = (results[0].duration.value + results[1].duration.value)/3600
-                  let totalDuration = ((totalTimeValue-Math.trunc(totalTimeValue))*60).toPrecision(4)
-                  outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total distance of trip: ${totalDistance} km</h2><h2>Estimated Total Duration: ${totalDuration} mins</h2>`)
+                  let totalDuration = ((totalTimeValue-Math.trunc(totalTimeValue))*60+(Math.trunc(totalTimeValue)*60)).toPrecision(4)
+                  outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total distance of trip: ${totalDistance} km</h2><h2>Estimated Total Trip Duration: ${totalDuration} mins</h2>`)
                   console.log(results)
                   let totalCost = (5 + (2*totalDistance)).toPrecision(4)
                   outputDiv.insertAdjacentHTML('beforeend',`<h2>Estimated total cost: $${totalCost}</h2>`)
+                  outputDiv.insertAdjacentHTML('beforeend',`
+                     <form id="databaseForm" action="/allValues" method="POST">
+                     <input type="hidden" name="carLocation" value="${closestCarLatHiddenField},${closestCarLngHiddenField}"/>
+                     <input type="hidden" name="pickupLocation" value="${pickupLocationLatHiddenField},${pickupLocationLngHiddenField}"/>
+
+                     <input type="hidden" name="currentLocation" value="${currentLocationLatHiddenField},${currentLocationLngHiddenField}"/>
+                     <input type="hidden" name="destination" value="${destinationLatHiddenField},${destinationLngHiddenField}"/>
+                     <input type="hidden" name="tripDuration" value="${totalDuration} mins"/>
+                     <input type="hidden" name="pickupDuration" value="${results[0].duration.text}"/>
+                     <input type="hidden" name="cost" value="${totalCost}"/>
+                     <input type="hidden" name="carid" value="${carIdHiddenField}"/>
+
+                     </form>
+                  `
+                )
+
+  document.getElementById('databaseForm').submit()
+
               }
             }
           }
