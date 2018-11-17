@@ -25,7 +25,7 @@
 <body>
  <section class="d-flex flex-column justify-content-between" id="background">
 <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
-    <div class="container-fluid"><a href="#" class="navbar-brand"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container-fluid"><a href="/" class="navbar-brand"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse"
             id="navcol-1">
             <ul class="nav navbar-nav mr-auto">
@@ -35,8 +35,23 @@
                 <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Purchase</a></li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
+              <!-- {{^adminname}}
                 <li role="presentation" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
                 <li role="presentation" class="nav-item"><a href="/register" class="nav-link">Sign Up</a></li>
+                {{/adminname}} -->
+
+                  <li role="presentation" class="nav-item" id="logout">
+                <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <b>  Welcome {{username}} </b>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/dashboard/user">My dashboard</a>
+    <a class="dropdown-item" href="/logout">Logout</a>
+  </div>
+</div>
+</li>
+
             </ul>
         </div>
     </div>
@@ -47,7 +62,7 @@
             <table id="carLocationTable">
                 <tr>
                     <th>Car ID</th>
-                    <th>Car Longitude</th> 
+                    <th>Car Longitude</th>
                     <th>Car Latitude</th>
                 </tr>
                 <tr>
@@ -100,12 +115,12 @@
                     <td></td>
                     <td></td>
                 </tr>
-    
+
 
             </table>
         </div>
 
-</section>   
+</section>
 
 </body>
 
@@ -115,4 +130,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marker-animate-unobtrusive/0.2.8/SlidingMarker.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="carController.js"></script>
+<script>
+  startMap()
+</script>
 </html>

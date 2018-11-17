@@ -33,23 +33,42 @@
             </ul>
             <ul class="nav navbar-nav ml-auto">
               {{^username}}
-                <li role="presentation" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-                <li role="presentation" class="nav-item"><a href="/register" class="nav-link">Sign Up</a></li>
+                <li id="loginButton" role="presentation" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                <li id="signUpButton" role="presentation" class="nav-item"><a href="/register" class="nav-link">Sign Up</a></li>
                 {{/username}}
+
+
                 {{#username}}
+
+                {{^isAdmin}}
                   <li role="presentation" class="nav-item" id="logout">
                 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    <b>  Welcome {{username}} </b>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/user/dashboard">My dashboard</a>
+    <a class="dropdown-item" href="/dashboard/user">My dashboard</a>
+    <a class="dropdown-item" href="/logout">Logout</a>
+  </div>
+</div>
+</li>
+{{/isAdmin}}
+                <!-- <li role="presentation" class="nav-item" id="logout"><a href="/logout" class="nav-link">Logout</a></li> -->
+                {{/username}}
+                {{#isAdmin}}
+                  <li role="presentation" class="nav-item" id="logout">
+                <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <b>  Welcome {{username}} </b>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/dashboard/admin">My dashboard</a>
     <a class="dropdown-item" href="/logout">Logout</a>
   </div>
 </div>
 </li>
                 <!-- <li role="presentation" class="nav-item" id="logout"><a href="/logout" class="nav-link">Logout</a></li> -->
-                {{/username}}
+                {{/isAdmin}}
             </ul>
         </div>
     </div>
@@ -145,7 +164,7 @@
                       <div class="container-fluid">
                           <div class="row">
                               <div class="col-lg-6">
-                                  <div class="pricing-item"><i class="fa fa-drivers-license"></i>
+                                  <div class="pricing-item"><i class="fa fa-laptop"></i>
                                       <h3>Advanced AI</h3>
                                       <p>Our cutting edge technology keeps costs low.</p>
                                   </div>
