@@ -8,7 +8,7 @@
   color: rgb(255,255,255);
   font-family: Montserrat, sans-serif;
 }
-#phoneDiv{
+#pricing{
   background-color: #d9d9d9;
 }
 .copyright{
@@ -129,4 +129,9 @@ tr:nth-child(odd) {background-color: #444040;}
 #carLocationTable {
   table-layout: auto;
   width: 100%;
+}
+
+.pricing-item i {
+  font-size: 60px;
+  color: teal;
 }
