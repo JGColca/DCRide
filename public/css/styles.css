@@ -1,11 +1,3 @@
-.hide{
-  visibility: hidden
-}
-
-body {
-  font-family: Montserrat, san-serif;
-}
-
 #background {
   width: 100%;
   height: 100vh;
@@ -63,6 +55,7 @@ body {
   padding-top: 100px;
   text-align: center;
   font-family: Montserrat, sans-serif;
+  /*color: white;*/
 }
 
 .p-top {
@@ -137,14 +130,3 @@ tr:nth-child(odd) {background-color: #444040;}
   table-layout: auto;
   width: 100%;
 }
-
-.pricing-item i {
-  font-size: 60px;
-  color: teal;
-}
-
-footer {
-  text-align: center;
-}
-
-
