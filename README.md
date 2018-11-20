@@ -20,3 +20,5 @@ This project is built using PostgreSQL with Sequelize-Object Relational Mapping
 HTML,CSS,Bootstrap,JavaScript, Node.js, Mustache
 ## External API:
 Google Maps API, Google Distance Matrix API and Google Places API
+## This site was built by
+[Joseph Colca](https://github.com/JGColca), [Beyza Kilickol Akurek](https://github.com/beyzakilickol), [Eslam Amin](https://github.com/EslamAmin151), [Pete Nguyen](https://github.com/pete1130)
