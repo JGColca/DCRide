@@ -11,6 +11,9 @@
 ## Live link: 
 Will be available soon...
 
+## Clips of the project: 
+![](dashboard.gif)
+
 ## Introduction video of the project: 
 https://www.youtube.com/watch?v=Nb-QDNkpJvQ
 
