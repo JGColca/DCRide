@@ -11,7 +11,7 @@
 ## Live link: 
 Will be available soon...
 
-## Clips of the project: 
+## Customer login and dashboard: 
 ![](dashboard.gif)
 
 ## Introduction video of the project: 
