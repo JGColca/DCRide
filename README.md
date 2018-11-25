@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=Nb-QDNkpJvQ
 ## Database: 
 This project is built using PostgreSQL with Sequelize-Object Relational Mapping
 ## Featured programs: 
-HTML,CSS,Bootstrap,JavaScript, Node.js, Mustache
+HTML, CSS, Bootstrap, JavaScript, Node.js, Mustache
 ## External API:
 Google Maps API, Google Distance Matrix API and Google Places API
 ## This site was built by
