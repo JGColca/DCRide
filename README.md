@@ -11,7 +11,7 @@
 ## Live link: 
 Will be available soon...
 
-## Customer login and dashboard: 
+## Admin login and dashboard: 
 ![]()
 
 ## Introduction video of the project: 
