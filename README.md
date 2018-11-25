@@ -12,7 +12,7 @@
 Will be available soon...
 
 ## Customer login and dashboard: 
-![](dashboard.gif)
+![](dashboard_1.gif)
 
 ## Admin login and dashboard: 
 ![](admin.gif)
