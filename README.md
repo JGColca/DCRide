@@ -12,7 +12,7 @@
 Will be available soon...
 
 ## Customer login and dashboard: 
-![](dashboard.gif)
+![]()
 
 ## Introduction video of the project: 
 https://www.youtube.com/watch?v=Nb-QDNkpJvQ
