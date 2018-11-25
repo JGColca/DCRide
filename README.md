@@ -11,6 +11,9 @@
 ## Live link: 
 Will be available soon...
 
+## Customer login and dashboard: 
+![](dashboard.gif)
+
 ## Admin login and dashboard: 
 ![](admin.gif)
 
