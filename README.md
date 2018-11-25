@@ -12,7 +12,7 @@
 Will be available soon...
 
 ## Admin login and dashboard: 
-![]()
+![](admin.gif)
 
 ## Introduction video of the project: 
 https://www.youtube.com/watch?v=Nb-QDNkpJvQ
