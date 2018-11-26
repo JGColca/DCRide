@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" dir="ltr">
 <head>
 <meta charset='utf-8' />
 <title>DC Ride Administration</title>
@@ -10,19 +9,12 @@
     <link rel="stylesheet" href="fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/carController.css">
-
+    <link rel="stylesheet" href="/css/styles.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoK1mDtgeh_BD_kVclDiPgjG8euDTigdE"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-
-
-
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoK1mDtgeh_BD_kVclDiPgjG8euDTigdE"></script>
 </head>
-
 <body>
  <section  id="background">
 <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
@@ -35,7 +27,6 @@
    <b>  Car Histories </b>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
     <a class="dropdown-item" href="/cars/1">CAR 1</a>
     <a class="dropdown-item" href="/cars/2">CAR 2</a>
     <a class="dropdown-item" href="/cars/3">CAR 3</a>
@@ -46,38 +37,25 @@
     <a class="dropdown-item" href="/cars/8">CAR 8</a>
     <a class="dropdown-item" href="/cars/9">CAR 9</a>
     <a class="dropdown-item" href="/cars/10">CAR 10</a>
-
   </div>
 </div></li> </ul>
-<!--
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Features</a></li>
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Pricing</a></li>
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Purchase</a></li>
-            </ul> -->
             <ul class="nav navbar-nav ml-auto">
-              <!-- {{^adminname}}
-                <li role="presentation" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-                <li role="presentation" class="nav-item"><a href="/register" class="nav-link">Sign Up</a></li>
-                {{/adminname}} -->
-
                   <li role="presentation" class="nav-item" id="logout">
                 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    <b>  Welcome {{username}} </b>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/dashboard/user">My dashboard</a>
+    <a class="dropdown-item" href="/dashboard/admin">Admin Dashboard</a>
     <a class="dropdown-item" href="/logout">Logout</a>
   </div>
 </div>
 </li>
-
             </ul>
         </div>
     </div>
 </nav>
 <div id="toOpenSpace">
-
 </div>
         <div id='mapAdmin'></div>
         <div id='tableAdmin' >
@@ -137,19 +115,13 @@
                     <td></td>
                     <td></td>
                 </tr>
-
-
             </table>
         </div>
-
 </section>
-
-</body>
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marker-animate-unobtrusive/0.2.8/vendor/markerAnimate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marker-animate-unobtrusive/0.2.8/SlidingMarker.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="carController.js"></script>
+</body>
+
 </html>

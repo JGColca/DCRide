@@ -24,13 +24,11 @@
    font-size: 21px !important;
  }
 }
-
 @media (min-width: 992px) {
  .p-top {
    font-size: 25px !important;
  }
 }
-
 @media (min-width: 992px) {
  .col-9.offset-2 {
    font-size: 19px !important;
@@ -44,49 +42,40 @@
   background-size: cover;
   height: 42px;
 }
-
 #navcol-1 {
   font-size: 14px;
   font-family: Montserrat, sans-serif;
   font-weight: normal;
 }
-
 .description.main {
   padding-top: 100px;
   text-align: center;
   font-family: Montserrat, sans-serif;
   /*color: white;*/
 }
-
 .p-top {
   font-family: Montserrat, sans-serif;
   font-weight: bold;
   font-size: 19px;
   margin: 0px;
 }
-
 .p-bottom {
   font-size: 16px;
 }
-
 #background .container {
   max-width: 825px;
   text-align: center;
 }
-
 .col-9.offset-2 p {
   font-weight: bold;
 }
-
 #video {
   text-align: center;
 }
-
 #login {
   padding-top: 35px;
   font-family: Montserrat, sans-serif;
 }
-
 #signup {
   padding-top: 35px;
   font-family: Montserrat, sans-serif;
@@ -114,7 +103,6 @@ th {
   padding: 25px;
   text-align: left;
 }
-
 td {
   text-align: left;
   height:30px;
@@ -122,15 +110,12 @@ td {
 tr {
   text-align: left;
 }
-
 tr:nth-child(even) {background-color: #272727;}
 tr:nth-child(odd) {background-color: #444040;}
-
 #carLocationTable {
   table-layout: auto;
   width: 100%;
 }
-
 .pricing-item i {
   font-size: 60px;
   color: teal;

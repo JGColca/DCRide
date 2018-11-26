@@ -1,7 +1,8 @@
-//----------------configuration---------------------------
 const express = require('express')
 const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
+const bcrypt = require('bcryptjs')
+const saltRounds = 10
 const app = express()
 var session = require('express-session')
 var cors = require('cors')
@@ -14,32 +15,12 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
-});
-// import the pg-promise library which is used to connect and execute SQL on a postgres database
-const pgp = require('pg-promise')()
-// connection string which is used to specify the location of the database
-const connectionString = "postgres://frrnsews:EoJ-dl7OE23qas-6FFzmsPBBCs12F_bH@baasu.db.elephantsql.com:5432/frrnsews"
-var pg = require('pg');
+})
+
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 
-var client = new pg.Client(connectionString);
-client.connect(function(err) {
-  if(err) {
-    return console.error('could not connect to postgres', err);
-  }
-  client.query('SELECT NOW() AS "theTime"', function(err, result) {
-    if(err) {
-      return console.error('error running query', err);
-    }
-    console.log(result.rows[0].theTime);
-    // >> output: 2018-08-23T14:02:57.117Z
-    client.end();
-  });
-});
-// creating a new database object which will allow us to interact with the database
-const db = pgp(connectionString)
-const models = require('./models') //sequelize config
+const models = require('./models')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('public'))
 
@@ -52,15 +33,17 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.listen(3012,function(req,res){
-  console.log('listening on *:3012');
 
-});
-//-----------------middleware-------------------------------------
+http.listen(3012,function(req,res){
+  console.log('listening on *:3012')
+
+})
+
+
 
 let authenticateLogin = function(req,res,next) {
 
- // check if the user is authenticated
+
  if(req.session.username || req.session.adminname) {
    next()
  } else {
@@ -77,16 +60,18 @@ app.all("/admin",authenticateLogin,function(req,res,next){
 app.all("/cars/*",authenticateLogin,function(req,res,next){
    next()
 })
-//-------------------------------------------
+
 app.get('/',function(req,res){
 
 res.render('index',{username: req.session.username || req.session.adminname, isAdmin : req.session.adminname != null})
 })
 app.post('/register',function(req,res){
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
   let username = req.body.username
-  let password = req.body.password
+  let password = hash
   let email = req.body.email
-  //------register validation by email, username---------------
+  
+
   models.Users.findOne({
 
     where:{
@@ -103,7 +88,7 @@ app.post('/register',function(req,res){
        if(user != null){
          res.render('Signup', {message : "This username/email is already taken.Please try to register with different credentials"})
        } else {
-         models.Users.build({
+          models.Users.build({
            username:username,
            email:email,
            password:password
@@ -113,6 +98,7 @@ app.post('/register',function(req,res){
          })
        }
   })
+})
 })
 
 
@@ -129,26 +115,34 @@ app.post('/login',function(req,res){
   models.Users.findOne({
     where:{
       email:email,
-      password:password
     }
   }).then(function(user){
     if(user!=null){
+    bcrypt.compare(password, user.password, function (err, result) {
+      if (result == true) {
     req.session.userid = user.id
     req.session.username = user.username
     res.redirect('/')
   }
+})
+    }
   else if (user == null){
     models.Admins.findOne({
       where:{
         email:email,
-        password:password
+        
       }
     }).then(function(admin){
       if(admin!=null){
+        bcrypt.compare(password, admin.password, function (err, result) {
+          if (result == true) {
       req.session.adminid = admin.id
       req.session.adminname = admin.username
       res.redirect('/')
-    } else {
+    } 
+  })
+}
+  else {
   res.render('Login',{message: 'Invalid credentials, try again'})
   }
 
@@ -160,31 +154,23 @@ app.post('/login',function(req,res){
   console.log(error)
 })
 })
-//-----creating admin page----------------
-// models.Admins.build({
-//   username : 'beyzaAdmin',
-//   email: 'beyzaAdmin@gmail.com',
-//   password: 'Heyhey11',
-// }).save().then(function(){
-//   console.log('success')
-// })
 
 app.get('/logout',function(req,res){
     req.session.destroy()
     res.redirect('/')
 })
 app.get('/dashboard/user',function(req,res){
-  res.render('userDashboard',{username: req.session.username})
+  res.render('userDashboard',{username: req.session.username, userid : req.session.userid})
 
 })
 app.get('/dashboard/admin',function(req,res){
   res.redirect('/admin')
 
 })
-//----------------------------------------------------------
+
 app.post('/customerLocation',function(req,res){
   let pickupGeoLocation = req.body.latlngPickupLocation
-   let pickupGeoLocationArray =pickupGeoLocation.split(',')
+  let pickupGeoLocationArray =pickupGeoLocation.split(',')
   let pickupLocationLat = pickupGeoLocationArray[0]
   let pickupLocationLng = pickupGeoLocationArray[1]
   let destinationGeoLocation = req.body.latlngDestination
@@ -195,10 +181,6 @@ app.post('/customerLocation',function(req,res){
   let currentGeoLocationArray = currentGeoLocation.split(',')
   let currentLat = currentGeoLocationArray[0]
   let currentLng = currentGeoLocationArray[1]
-  let userid = req.session.userid
-console.log(currentGeoLocation=='')
-console.log(pickupGeoLocation=='')
-console.log(pickupGeoLocationArray)
 var distances = []
 
 models.Cars.findAll().then(function(cars){
@@ -211,12 +193,12 @@ models.Cars.findAll().then(function(cars){
 
   }
   })
-  console.log(distances)
+ 
   let carDistances = distances.map(function(each){
     return each.carDistance
   })
 let sortedCarDistances=carDistances.sort(function(a,b) { return a-b; })
-console.log(sortedCarDistances[0])
+
 
  distances.forEach(function(each){
 
@@ -226,23 +208,23 @@ console.log(sortedCarDistances[0])
   }
 })
 
-console.log(closestCar)
-
-  let apiData = {carid:closestCar[0].id,closestCarLat:closestCar[0].lat,closestCarLng: closestCar[0].lng,pickupLocationLat:pickupLocationLat, pickupLocationLng:pickupLocationLng,currentLocationLat:currentLat,currentLocationLng:currentLng,destinationLat:DestinationLat,destinationLng:DestinationLng }
 
 
-res.render("customerLocation",apiData)
+  let apiData = {carid:closestCar[0].id,closestCarLat:closestCar[0].lat,closestCarLng: closestCar[0].lng,pickupLocationLat:pickupLocationLat, pickupLocationLng:pickupLocationLng,currentLocationLat:currentLat,currentLocationLng:currentLng,destinationLat:DestinationLat,destinationLng:DestinationLng, username: req.session.username, userid:req.session.userid }
+
+
+res.render("customerLocation", apiData)
 
 })
   })
 
-//--------------find closest car
+
 function deg2rad(deg) {
    return deg * Math.PI / 180
  }
  function distance(lat1, lon1, lat2, lon2) {
-   var R = 6371; // Radius of the earth in km
-   var dLat = deg2rad(lat2 - lat1); // deg2rad below
+   var R = 6371; 
+   var dLat = deg2rad(lat2 - lat1); 
    var dLon = deg2rad(lon2 - lon1);
    var a =
      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -250,17 +232,17 @@ function deg2rad(deg) {
      Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-   var d = R * c; // Distance in km
+   var d = R * c;
    return d;
  }
 
-//------------------
 
 
 
-app.get('/user/customerLocation',function(req,res){
-  res.render('customerLocation')
-})
+
+// app.get('/user/customerLocation',function(req,res){
+//   res.render('customerLocation', {username: req.session.username})
+// })
 
 app.use('/admin', express.static('static'))
 app.use('/admin', express.static('public'))
@@ -290,8 +272,7 @@ app.post('/allValues',function(req,res){
   let pickupDuration = req.body.pickupDuration
   let cost = req.body.cost
   let carid = req.body.carid
-  console.log(pickupLocation)
-  console.log(currentLocation)
+  
 
 if(pickupLocation == 'NaN,NaN'){
   models.Transactions.build({
@@ -304,7 +285,7 @@ if(pickupLocation == 'NaN,NaN'){
     userid: req.session.userid,
     carid: carid
   }).save().then(function(data){
-        //?????????????????????throws error when redirected to the same page
+        
   })
 } else {
   models.Transactions.build({
@@ -317,18 +298,19 @@ if(pickupLocation == 'NaN,NaN'){
     userid: req.session.userid,
     carid: carid
   }).save().then(function(data){
-        //?????????????????????throws error when redirected to the same page
+       
   })
 }
 
 })
+
 app.get('/cars/:no',function(req,res){
   let carid = req.params.no
   models.Transactions.findAll({where:
   {
     carid : carid
   }}).then(function(transactions){
-    console.log(transactions)
+    
     res.render('carHistories',{transactions:transactions, username:req.session.adminname})
   })
 })

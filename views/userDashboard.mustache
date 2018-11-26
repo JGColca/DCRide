@@ -1,66 +1,56 @@
-<!-- <!DOCTYPE html> -->
+{{! <!DOCTYPE html> }}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
     <link rel="stylesheet" href="/css/animation.css">
+    
     <title>Dashboard</title>
 
   </head>
   <body>
     <section class="d-flex flex-column justify-content-between" id="background">
-        <div id="main-top">
-            <div class="description main">
-            </div><nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
-    <div class="container-fluid"><a href="/" class="navbar-brand"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse"
-            id="navcol-1">
-            <!-- <ul class="nav navbar-nav mr-auto">
-                <li role="presentation" class="nav-item"><a href="#video" class="nav-link js-scroll-trigger">How it works</a></li>
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Features</a></li>
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Pricing</a></li>
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link js-scroll-trigger">Purchase</a></li>
-            </ul> -->
-            <ul class="nav navbar-nav ml-auto">
-              <!-- {{^username}}
-                <li role="presentation" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-                <li role="presentation" class="nav-item"><a href="/register" class="nav-link">Sign Up</a></li>
-                {{/username}} -->
-                {{#username}}
-                  <li role="presentation" class="nav-item" id="logout">
-                <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   <b>  Welcome {{username}} </b>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/dashboard/user">My dashboard</a>
-    <a class="dropdown-item" href="/logout">Logout</a>
-  </div>
-</div>
-</li>
-                <!-- <li role="presentation" class="nav-item" id="logout"><a href="/logout" class="nav-link">Logout</a></li> -->
-                {{/username}}
-            </ul>
+      <div id="main-top">
+        <div class="description main">
         </div>
-    </div>
-</nav></div>
+        <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
+          <div class="container-fluid">
+            <a href="/" class="navbar-brand"></a>
+            <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse"id="navcol-1">
+              <ul class="nav navbar-nav ml-auto">
+                {{#username}}
+                <li role="presentation" class="nav-item" id="logout">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <b>  Welcome {{username}} </b>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="/dashboard/user">My dashboard</a>
+                      <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                      </div>
+                </li>
+                {{/username}}
+              </ul>
+            </div>
+          </div>
+        </nav>  
+      </div>
 <!--  Animation -->
 <div id="animation-container">
-
-
 <svg id="animation" width="5500" height="3300">
-
-
-
- <!-- SKY -->
+<!-- SKY -->
   <defs>
     <linearGradient id="grad1" x1="0%" y1="100%" x2="0%" y2="0%">
       <stop offset="0%" style="stop-color:white;stop-opacity:1" />
@@ -71,20 +61,12 @@
   </defs>
   <rect width="5500" height="3000" x="0" y="-1400" fill="url(#grad1)" id="sky" />
  <animateMotion xlink:href="#sky" path="M0,0 L0,1400" begin="sun1.begin" dur="10s" fill="freeze" />
-
-
-
-  <!-- Lake -->
+ <!-- Lake -->
  	<rect width="5500" height="700" x="0" y="2750" fill="#41C8F2" />
-
-<!-- GRASS -->
+   <!-- GRASS -->
   <rect width="5500" height="70" fill="green" stroke="white" stroke-width="10"  x="0" y="2665" />
-
- <!-- ROTATED CITY -->
+<!-- ROTATED CITY -->
 <use xlink:href="#rotate" transform="rotate(180,0,2780), scale(-1,1)" opacity="0.3" />
-
-
-
  <!-- Dalga lines-->
  <g id="dlines">
 <line x1="100" y1="2850" x2="400" y2="2850" stroke="white" stroke-width="5" opacity="0.7" />
@@ -103,7 +85,6 @@
 </g>
 <use xlink:href="#dlines" transform="translate(120,150)" />
 <use xlink:href="#dlines" transform="translate(0,300)" />
-
 <!-- seaside -->
 <rect width="5500"  height="40" fill="#5F4932" x="0" y="2750" />
 <g id="side">
@@ -114,7 +95,6 @@
 <rect width="80"  height="100" x="5" y="2790" fill="#9D8875" stroke="#5F4932" stroke-width="10" transform="translate(3960)"/>
 <rect width="80"  height="100" x="5" y="2790" fill="#9D8875" stroke="#5F4932" stroke-width="10" transform="translate(4950)"/>
 </g>
-
 <use xlink:href="#side" transform="translate(90)" id="1"/>
 <use xlink:href="#1" transform="translate(90)" id="2"/>
 <use xlink:href="#2" transform="translate(90)" id="3"/>
@@ -125,13 +105,8 @@
 <use xlink:href="#7" transform="translate(90)" id="8"/>
 <use xlink:href="#8" transform="translate(90)" id="9"/>
 <use xlink:href="#9" transform="translate(90)" id="10"/>
-
-
  <g id="rotate">
-
-
-
- <!-- SUN -->
+<!-- SUN -->
 <defs>
     <filter id="f1" cx="20" cy="20">
       <feGaussianBlur in="SourceGraphic" stdDeviation="20" />
@@ -139,9 +114,7 @@
     </filter>
 </defs>
 <circle cx="700" cy="170" r="150" stroke="yellow" stroke-width="3" fill="yellow" filter="url(#f1)" id="sun" />
-
 <animateMotion xlink:href="#sun" path="M0,0 L0,1600" begin="click" dur="8s" fill="freeze" id="sun1"/>
-
 <!-- MOON -->
 <defs>
     <filter id="f1" cx="20" cy="20">
@@ -162,9 +135,7 @@
  <circle cx="3110" cy="210" r="10" fill="#C4CCBE" stroke="#A2AE98" stroke-width="3" />
  </g>
  <animateMotion xlink:href="#moon" path="M0,0 L0,-1600" begin="sun1.end" dur="8s" fill="freeze"  />
-
-
-  <!-- ROAD -->
+<!-- ROAD -->
 <rect width="5500" height="1100" y="1560" fill="#494343" />
 <rect width="250" height="15" x="200" y="2450" fill="white" />
 <rect width="250" height="15" x="700" y="2450" fill="white" />
@@ -178,10 +149,6 @@
 <rect width="250" height="15" x="4700" y="2450" fill="white" />
 <rect width="250" height="15" x="5200" y="2450" fill="white" />
 <rect width="250" height="15" x="5700" y="2450" fill="white" />
-
-
-
-
 <!-- land -->
 <path d="M0,2250 L700,2250 800,2000 0,2000" fill="#585E5E" stroke="grey" stroke-width="10"/>
 <path d="M0,1900 L825,1900 950,1560 0,1560" fill="#585E5E" stroke="grey" stroke-width="10"/>
@@ -189,9 +156,6 @@
 <path d="M1135,1900 L2480,1900 2455,1560 1185,1560Z" fill="#585E5E" stroke="grey" stroke-width="10"/>
 <path d="M2750,2250 L5500,2250 5550,2000 2720,2000Z" fill="#585E5E" stroke="grey" stroke-width="10"/>
 <path d="M2700,1900 L5500,1900 5550,1560 2660,1560z" fill="#585E5E" stroke="grey" stroke-width="10"/>
-
-
-
 <!-- tall buldings -->
 <path d="M3500,1800 L3500,1000 3550,1000 3550,750 3600,750 3600,600 3650,600 3675,350 3700,600 3750,600 3750,750 3800,750 3800,1000 3850,1000 3850,1800Z" fill="#F2F2F2" />
 <rect width="25" height="120" x="3610" y="620" fill="#4D4F4E" />
@@ -225,12 +189,9 @@
 <use xlink:href="#r2" transform="translate(0,60)" id="s2"/>
 <use xlink:href="#s2" transform="translate(0,60)" id="t2"/>
 <use xlink:href="#t2" transform="translate(0,60)" id="u2"/>
-
-
 <path d="M4200,1800 L4200,700 4350,700 4350,600 4550,600 4550,700 4700,700 4700,1800Z" stroke="black" fill="#4C4D51"/>
 <rect width="150" height="1050" x="4150" y="750" fill="#E2E3E7" />
 <rect width="150" height="1050" x="4600" y="750" fill="#E2E3E7" />
-
 <g id="v2">
 <rect width="50" height="150" x="4365" y="660" fill="#FFCF88" />
 <rect width="50" height="150" x="4427.5" y="660" fill="#FFCF88" />
@@ -246,9 +207,6 @@
 <ellipse cx="4630" cy="1290" rx="10" ry="500" fill="#4C4D51" />
 <ellipse cx="4670" cy="1290" rx="10" ry="500" fill="#4C4D51" />
 <ellipse cx="4710" cy="1290" rx="10" ry="500" fill="#4C4D51" />
-
-
-
 <!-- CLOUDS -->
 <ellipse cx="-500" cy="0" rx="440" ry="30" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,260 L6000,260" begin="0s" dur="32s" repeatCount="indefinite"/>
@@ -256,27 +214,21 @@
 <ellipse cx="-500" cy="0" rx="440" ry="40" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,300 L6000,300" begin="5s" dur="35s" repeatCount="indefinite"/>
 </ellipse>
-
 <ellipse cx="-500" cy="0" rx="440" ry="40" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,200 L6000,200" begin="10s" dur="35s" repeatCount="indefinite"/>
 </ellipse>
-
 <ellipse cx="-500" cy="0" rx="440" ry="40" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,300 L6000,300" begin="15s" dur="35s" repeatCount="indefinite"/>
 </ellipse>
-
 <ellipse cx="-500" cy="200" rx="440" ry="40" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,200 L6000,200" begin="10s" dur="38s" repeatCount="indefinite"/>
 </ellipse>
-
 <ellipse cx="-500" cy="0" rx="440" ry="40" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,400 L6000,400" begin="20s" dur="35s" repeatCount="indefinite"/>
 </ellipse>
-
 <ellipse cx="-500" cy="0" rx="440" ry="40" style="stroke:none; fill:white; fill-opacity: 0.3; ">
 <animateMotion path="M0,250 L6000,250" begin="25s" dur="35s" repeatCount="indefinite"/>
 </ellipse>
-
 <!-- MAIN CLOUDS -->
 <g id="a1">
 <rect width="700" height="80" x="2660" y="460" style="stroke:none; fill:white;  "/>
@@ -302,7 +254,6 @@
 <circle cx="3350" cy="470" r="70" fill="white" />
 </g>
 <animateMotion xlink:href="#e3" path="M-5400,0 3000,0" repeatCount="indefinite" begin="0s" dur="110s"/>
-
 <g id="c1">
 <rect width="400" height="50" x="1400" y="460" style="stroke:none; fill:white;  "/>
 <circle cx="1400" cy="440" r="70" fill="white" />
@@ -321,7 +272,6 @@
 <circle cx="1780" cy="410" r="100" fill="white" />
 </g>
 <animateMotion xlink:href="#c3" path="M-2000,0 4400,0" repeatCount="indefinite" begin="0s" dur="70s"/>
-
 <g id="d1">
 <rect width="200" height="50" x="500" y="460" style="stroke:none; fill:white;  "/>
 <circle cx="500" cy="450" r="60" fill="white" />
@@ -350,7 +300,6 @@
 <circle cx="700" cy="450" r="60" fill="white" />
 </g>
 <animateMotion xlink:href="#g3" path="M-5000,-200 5500,-200" repeatCount="indefinite" begin="0s" dur="115s"/>
-
 <g id="b1">
 <rect width="500" height="80" x="4000" y="460" style="stroke:none; fill:white;  "/>
 <circle cx="4000" cy="470" r="70" fill="white" />
@@ -388,14 +337,12 @@
 </g>
 <animateMotion xlink:href="#f3" path="M-7700,0 2000,0" repeatCount="indefinite" begin="0s" dur="125s"/>
 <!-- Buildings -->
-
 <!-- left top building-->
 <path d="M500,1600 L500,750 550,750 550,700 600,700 600,650 750,650 750,700 800,700 800,750 850,750 850,1600Z" fill="#A6CED5" stroke="#344B56" stroke-width="2" />
 <rect width="50" height="800" x="550" y="800" fill="#344B56" opacity="0.7" />
 <rect width="50" height="800" x="750" y="800" fill="#344B56" opacity="0.7" />
 <rect width="50" height="120" x="650" y="1480" fill="#344B56" opacity="0.7" />
 <line x1="680" y1="650" x2="680" y2="580" stroke="#344B56" stroke-width="6" />
-
 <!-- left middle building-->
 <path d="M700,1750 L700,900 400,900 400,1750Z" fill="#F8D473" stroke="#F8D473" stroke-width="10" />
 <path d="M450,895 L450,865 500,865 500,835 655,835 655,760 665,760 665,895Z" fill="#544B46" stroke="#544B46" />
@@ -411,14 +358,12 @@
 <use xlink:href="#c" transform="translate(0,350)" id="e" />
 <use xlink:href="#e" transform="translate(0,80)" id="f" />
 <use xlink:href="#f" transform="translate(0,80)" id="f" />
-
 <rect width="20" height="120" x="440" y="1300" fill="#544B46"  />
 <rect width="20" height="120" x="480" y="1300" fill="#544B46"  />
 <rect width="20" height="120" x="520" y="1300" fill="#544B46"  />
 <rect width="20" height="120" x="560" y="1300" fill="#544B46"  />
 <rect width="20" height="120" x="600" y="1300" fill="#544B46"  />
 <rect width="20" height="120" x="640" y="1300" fill="#544B46"  />
-
 <!-- left bottom building-->
 <path d="M50,2100 L50,1850 530,1850 530,2100Z" fill="#FFD5A0" stroke="#FFD5A0"  />
 <g id="g">
@@ -444,7 +389,6 @@
 <use xlink:href="#n" transform="translate(0,70)" id="o" />
 <use xlink:href="#o" transform="translate(0,70)" id="p" />
 <use xlink:href="#p" transform="translate(0,70)" />
-
 <!-- middle back building-->
 <path d="M1400,1600 Q1400,700 1400,700 1600,700 1600,700 1700,550 1800,700 2000,700 2000,700 2000,1600 2000,1600Z"
 transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
@@ -462,7 +406,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 <use xlink:href="#t" transform="translate(0,80)" id="u"/>
 <use xlink:href="#u" transform="translate(0,80)" id="v"/>
 <use xlink:href="#v" transform="translate(0,80)" id="w"/>
-
 <!-- pink building-->
 <path d="M1300,1800 L1300,1300 2300,1300 2300,1800Z" fill="#EC97AC" stroke="#EC97AC" />
 <g id="x">
@@ -482,7 +425,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 <use xlink:href="#x" transform="translate(0,130)" />
 <use xlink:href="#x" transform="translate(0,260)" />
 <path d="M1260,1300 L1260,1280 1340,1280 1400,1100 1450,1100 1450,1080 1700,1080 1700,1060 2050,1060 2050,1100 2200,1100 2260,1280 2340,1280 2340,1300Z " fill="#58575C" stroke="#58575C"/>
-
 <!-- HOSPITAL -->
 <g transform="translate(-80,0)">
 <rect width="300" height="750" x="2150" y="1400" fill="#EBECEE" stroke="#D0D0D0" stroke-width="30"/>
@@ -497,7 +439,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 <rect width="100" height="60" x="2165" y="1780" fill="#43ABE0" stroke="#D0D0D0" stroke-width="5"/>
 <rect width="100" height="60" x="2165" y="1880" fill="#43ABE0" stroke="#D0D0D0" stroke-width="5"/>
 <rect width="100" height="60" x="2165" y="1980" fill="#43ABE0" stroke="#D0D0D0" stroke-width="5"/>
-
 <rect width="450" height="500" x="1630" y="1700" fill="#EBECEE" stroke="#D0D0D0" stroke-width="30"/>
 <rect width="480" height="40" x="1615" y="1680" fill="#9F1C21" />
 <path d="M1615,1680 L1700,1550 2025,1550 2095,1680" stroke="red" fill="#9F1C21" />
@@ -512,7 +453,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 <rect width="100" height="100" x="1910" y="1880" fill="#43ABE0" stroke="#D0D0D0" stroke-width="5"/>
 <rect width="100" height="100" x="1700" y="1880" fill="#43ABE0" stroke="#D0D0D0" stroke-width="5"/>
 <rect width="100" height="100" x="1700" y="2010" fill="#43ABE0" stroke="#D0D0D0" stroke-width="5"/>
-
 <!-- telephone -->
 <rect width="150" height="250" x="1300" y="1970" fill="#DD2618" stroke="white" stroke-width="3" />
 <rect width="130" height="250" x="1310" y="1980" fill="#DD2618" stroke="white" stroke-width="3" />
@@ -527,7 +467,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 <rect width="110" height="20" x="1320" y="1948" fill="#CF1E16" stroke="white" stroke-width="3" />
 <text x="1327" y="1965" fill="white">TELEPHONE</text>
 <path d="M1310,1947 Q1370,1890 1440,1947" fill="#CF1E16" stroke="white"/>
-
 <!-- Right top left building-->
 <path d="M2800,1800 Q2800,800 2800,800 3050,550 3300,800 3300,1800 3300,1800Z" fill="#ACD7A9" />
 <path d="M2850,850 Q3050,670 3250,850" fill="#4C4D51" transform="translate(0,-50)"/>
@@ -551,7 +490,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 </g>
 <use xlink:href="#g2" transform="translate(0,80)" id="h2"/>
 <use xlink:href="#h2" transform="translate(0,80)" />
-
 <!-- tree -->
 <g id="tree">
 <rect width="30" height="100" x="100" y="2120" fill="#835E41" />
@@ -578,8 +516,6 @@ transform="translate(-70,0)" stroke="white" fill="#4C4D51"/>
 <use xlink:href="#tree5" transform="translate(100)" id="tree6" />
 <use xlink:href="#tree6" transform="translate(-750)" id="tree7" />
 <use xlink:href="#tree7" transform="translate(90)" />
-
-
 <!-- lamp -->
 <g id="lamp">
 <path d="M630,2220 L630,2180 640,2180 640,1950 610,1900 640,1850 640,1835 620,1835 620,1820 680,1820 680,1835 660,1835 660,1850 690,1900 660,1950 660,2180 670,2180 670,2220Z"
@@ -589,9 +525,6 @@ stroke="black" fill="grey" stroke-width="2" />
 <use xlink:href="#lamp" transform="translate(510,0)" id="lamp1"/>
 <use xlink:href="#lamp1" transform="translate(1270,0)" id="lamp2"/>
 <use xlink:href="#lamp2" transform="translate(370,0)" />
-
-
-
 <!-- UFO -->
 <g id="ufo" transform="translate(-550,50)" >
 <ellipse cx="5000" cy="500" rx="140" ry="50" fill="#2acc4b" stroke="#147026" stroke-width="10" />
@@ -602,16 +535,13 @@ stroke="black" fill="grey" stroke-width="2" />
 </g>
 <animateMotion
 path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s" fill="freeze" />
-
 <animate
 			xlink:href="#ufo"
 			attributeName="opacity"
 			from="0" to="1"
 			dur="7s" begin="click"
 			repeatCount="1"
-	/>
-
-
+/>
 <!-- Police station -->
 <rect width="1000" height="300" x="4200" y="1910" fill="#819EAC" />
 <rect width="1090" height="50" x="4160" y="1880" fill="#819EAC" />
@@ -631,15 +561,12 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <rect width="80" height="110" x="4750" y="2020" fill="#738BAD" stroke="white" stroke-width="7" />
 <rect width="150" height="100" x="4270" y="1950" fill="#009EF2" stroke="white" stroke-width="7" />
 <rect width="150" height="100" x="4970" y="1950" fill="#009EF2" stroke="white" stroke-width="7" />
-
 <!-- kecid -->
-
 <path d="M760,2250 L720,2250 820,2000 850,2000Z" stroke="white" stroke-width="5" fill="white" />
 <path d="M760,2250 L720,2250 810,2000 840,2000Z" stroke="white" stroke-width="5" fill="white" transform="translate(70,0)"/>
 <path d="M760,2250 L720,2250 800,2000 830,2000Z" stroke="white" stroke-width="5" fill="white" transform="translate(140,0)"/>
 <path d="M760,2250 L720,2250 790,2000 820,2000Z" stroke="white" stroke-width="5" fill="white" transform="translate(210,0)"/>
 <path d="M760,2250 L720,2250 780,2000 810,2000Z" stroke="white" stroke-width="5" fill="white" transform="translate(280,0)"/>
-
 <!-- post office -->
 <rect width="600" height="130" x="3100" y="2080" fill="#B25A1B" />
 <rect width="600" height="190" x="3100" y="1890" fill="#F7DCC9" />
@@ -650,16 +577,12 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <rect width="5" height="100" x="3216" y="2020" fill="#C31A15" />
 <rect width="100" height="100" x="3350" y="2020"  fill="#80F5FF" stroke="#4B2824" stroke-width="10" />
 <rect width="100" height="100" x="3530" y="2020"  fill="#80F5FF" stroke="#4B2824" stroke-width="10" />
-
 <!-- Bus top-->
 <use xlink:href="#bus" transform="translate(5500,-220), scale(-1,1)" id="busanim"/>
-
 <!-- police car-->
 <use xlink:href="#pcar1" transform="translate(6000,-200), scale(-1,1)" id="animcar" />
-
 <animateMotion xlink:href="#animcar" path="M0,0 L-800,0" begin="3s" dur="13s" repeatCount="indefinite" />
 <animateMotion xlink:href="#pcar1" path="M-2000,0 L5500,0" begin="0s" dur="13s" repeatCount="indefinite"/>
-
 <!-- car grey-->
 <g id="greycar" transform="translate(7200,-0), scale(-1,1)">
 <path d="M1000,2400 Q970,2350 1000,2300 1100,2300 1100,2300 1300,2150 1500,2300 1640,2300 1650,2400Z" fill="#afafaf" stroke="#065916" stroke-width="15" />
@@ -670,7 +593,6 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <ellipse cx="1580" cy="2350" rx="25" ry="10" fill="yellow" stroke="red" stroke-width="8" />
 </g>
 <animateMotion xlink:href="#greycar" path="M0,0 L-6300,0" begin="0s" dur="20s" repeatCount="indefinite" />
-
 <!-- car yellow-->
 <g id="ycar" transform="translate(7200,-0), scale(-1,1)">
 <path d="M1000,2400 Q970,2350 1000,2300 1100,2300 1100,2300 1300,2150 1500,2300 1640,2300 1650,2400Z" fill="#dee825" stroke="#a2aa00" stroke-width="15" />
@@ -681,8 +603,6 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <ellipse cx="1580" cy="2350" rx="25" ry="10" fill="yellow" stroke="red" stroke-width="8" />
 </g>
 <animateMotion xlink:href="#ycar" path="M0,0 L-6300,0" begin="5s" dur="20s" repeatCount="indefinite" />
-
-
 <!-- car green-->
 <g id="grcar" transform="translate(-1700,200)">
 <path d="M1000,2400 Q970,2350 1000,2300 1100,2300 1100,2300 1300,2150 1500,2300 1640,2300 1650,2400Z" fill="#c1ffca" stroke="#065916" stroke-width="15" />
@@ -692,9 +612,7 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <ellipse cx="1010" cy="2345" rx="10" ry="20" fill="yellow" stroke="red" stroke-width="8" />
 <ellipse cx="1580" cy="2350" rx="25" ry="10" fill="yellow" stroke="red" stroke-width="8" />
 </g>
-
 <animateMotion xlink:href="#grcar" path="M-100,0 L6000,0" begin="2s" dur="20s" repeatCount="indefinite"/>
-
 <!-- car red-->
 <g id="redcar" transform="translate(-1700,200)">
 <path d="M1000,2400 Q970,2350 1000,2300 1100,2300 1100,2300 1300,2150 1500,2300 1640,2300 1650,2400Z" fill="#ff4747" stroke="#a80000" stroke-width="15" />
@@ -705,8 +623,6 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <ellipse cx="1580" cy="2350" rx="25" ry="10" fill="yellow" stroke="red" stroke-width="8" />
 </g>
 <animateMotion xlink:href="#redcar" path="M-100,0 L6000,0" begin="8s" dur="20s" repeatCount="indefinite"/>
-
-
 <!--police car bottom-->
 <g id="pcar1" transform="translate(-100,200)">
 <path d="M1000,2400 Q970,2350 1000,2300 1100,2300 1100,2300 1300,2150 1500,2300 1640,2300 1650,2400Z" fill="white" stroke="#1d5dc4" stroke-width="15" />
@@ -718,7 +634,6 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <ellipse cx="1010" cy="2345" rx="10" ry="20" fill="yellow" stroke="red" stroke-width="8" />
 <ellipse cx="1580" cy="2350" rx="25" ry="10" fill="yellow" stroke="red" stroke-width="8" />
 </g>
-
 <!-- BUS -->
 <g id="bus" transform="translate(-4250)">
   <button type="button" name="button">Request a ride</button>
@@ -734,9 +649,6 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 </g>
 <animateMotion xlink:href="#bus" path="M-100,0 L6000,0" begin="3s" dur="55s" repeatCount="indefinite" />
 <animateMotion xlink:href="#busanim" path="M0,0 L-7000,0" begin="2s" dur="55s" repeatCount="indefinite" />
-
-
-
 <!-- plane -->
 <g id="plane" transform="translate(-760,0)">
 <path d="M420,300 C550,290 550,290 520,380 460,560 430,350 420,300Z" fill="#9EA5C1" stroke="#738694" stroke-width="3" transform="rotate(170,480,260)"/>
@@ -770,9 +682,7 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 			dur="25s" begin="click"
 			repeatCount="1"
 	/>
-
 </g>
-
  <!-- seaside lines-->
 <rect width="40" height="130" x="205" y="2650" fill="#5F4932" rx="20" id="side1"/>
 <use xlink:href="#side1" transform="translate(500)" id="side2" />
@@ -785,13 +695,11 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <use xlink:href="#side8" transform="translate(500)" id="side9" />
 <use xlink:href="#side9" transform="translate(500)" id="side10" />
 <use xlink:href="#side10" transform="translate(500)" id="side11" />
-
 <!--Dalga-->
 <g id="dalga">
 <path d="M0,2700 Q100,2700 200,2650 300,2700 400,2700" fill="#41C8F2" stroke="white" stroke-width="10" transform="translate(0,200)" />
 <path d="M0,2700 Q100,2700 200,2650 300,2700 400,2700" fill="#41C8F2" stroke="white" stroke-width="10" transform="translate(200,200)" />
 </g>
-
 <use xlink:href="#dalga" transform="translate(400,0)" id="dalga1" />
 <use xlink:href="#dalga1" transform="translate(400,0)" id="dalga2" />
 <use xlink:href="#dalga2" transform="translate(400,0)" id="dalga3" />
@@ -806,9 +714,7 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 <use xlink:href="#dalga11" transform="translate(400,0)" id="dalga12" />
 <use xlink:href="#dalga12" transform="translate(400,0)" id="dalga13" />
 <animateMotion xlink:href="#dalga" path="M0,0 L0,30 0,0" repeatCount="indefinite" begin="0s" dur="4s"/>
-
  <!-- BOATS -->
-
 <!-- blue boat top-->
  <g id="boat1"  transform="translate(4000,-100), scale(-1,1)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#003b9b" stroke="black" stroke-width="5" />
@@ -817,7 +723,6 @@ path="M0,0 L0,-100 -2220,300 -2220,775" xlink:href="#ufo" begin="click" dur="7s"
 </g>
 <animateMotion xlink:href="#boat1" path="M0,0 L-4000,0"
 begin="0s" dur="40s" fill="freeze" />
-
 <!-- blue boat top 2-->
  <g id="boat6"  transform="translate(6100,-100), scale(-1,1)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#003b9b" stroke="black" stroke-width="5" />
@@ -826,7 +731,6 @@ begin="0s" dur="40s" fill="freeze" />
 </g>
 <animateMotion xlink:href="#boat6" path="M0,0 L-6000,0"
 begin="30s" dur="50s" repeatCount="indefinite" />
-
 <!--red boat top-->
  <g id="boat5"  transform="translate(6100,-100), scale(-1,1)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#ba2500" stroke="black" stroke-width="5" />
@@ -835,7 +739,6 @@ begin="30s" dur="50s" repeatCount="indefinite" />
 </g>
 <animateMotion xlink:href="#boat5" path="M0,0 L-6000,0"
 begin="0s" dur="50s"  repeatCount="indefinite" />
-
 <!--yellow boat top-->
  <g id="boat7" transform="translate(6100,-100), scale(-1,1)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#ce6300" stroke="black" stroke-width="5" />
@@ -844,7 +747,6 @@ begin="0s" dur="50s"  repeatCount="indefinite" />
 </g>
 <animateMotion xlink:href="#boat7" path="M0,0 L-6000,0"
 begin="15s" dur="50s" repeatCount="indefinite"  />
-
 <!--yellow boat-->
  <g id="boat">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#ce6300" stroke="black" stroke-width="5" />
@@ -853,7 +755,6 @@ begin="15s" dur="50s" repeatCount="indefinite"  />
 </g>
 <animateMotion xlink:href="#boat" path="M50,0 Q500,100 1000,0 1500,100 2000,0 2500,100 3000,0 3500,100 4000,0 4500,100 5000,0 6000,100 6500,0"
 begin="0s" dur="40s" fill="freeze"  />
-
 <!--yellow boat2 -->
  <g id="boat4" transform="translate(-600,0)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#ce6300" stroke="black" stroke-width="5" />
@@ -862,7 +763,6 @@ begin="0s" dur="40s" fill="freeze"  />
 </g>
 <animateMotion xlink:href="#boat4" path="M-50,0 Q500,100 1000,0 1500,100 2000,0 2500,100 3000,0 3500,100 4000,0 4500,100 5000,0 6000,100 6500,0"
 begin="35s" dur="50s" repeatCount="indefinite"  />
-
 <!-- green boat -->
  <g id="boat2" transform="translate(-600,0)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#406d02" stroke="black" stroke-width="5" />
@@ -871,7 +771,6 @@ begin="35s" dur="50s" repeatCount="indefinite"  />
 </g>
 <animateMotion xlink:href="#boat2" path="M-50,0 Q500,100 1000,0 1500,100 2000,0 2500,100 3000,0 3500,100 4000,0 4500,100 5000,0 6000,100 6500,0"
 begin="5s" dur="50s" repeatCount="indefinite"   />
-
 <!-- red boat-->
 <g id="boat3" transform="translate(-600,0)">
 <path d="M200,3200 L150,3100 600,3100 550,3200Z" fill="#ba2500" stroke="black" stroke-width="5" />
@@ -880,41 +779,23 @@ begin="5s" dur="50s" repeatCount="indefinite"   />
 </g>
 <animateMotion xlink:href="#boat3" path="M-50,0 Q500,100 1000,0 1500,100 2000,0 2500,100 3000,0 3500,100 4000,0 4500,100 5000,0 6000,100 6500,0"
 begin="20s" dur="50s" repeatCount="indefinite"   />
-
-
 </svg>
-
 </div>
 <center>
-
   <div id="requestContainer">
-
-
 <button id="requestButton" type="button" name="button">Request a ride</button>
 <div id="locations" class="">
-  <form id="form" class="form-horizontal" action="/customerLocation" method="POST">
-
-                   </form>
-<!-- <form id="form" action="/customerLocation" method="POST">
-
-</form> -->
+<form id="form" class="form-horizontal" action="/customerLocation" method="POST">
+</form>
 </div>
-
-</div></center>
-
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoK1mDtgeh_BD_kVclDiPgjG8euDTigdE&libraries=places&callback=initMap"
-        async defer></script> -->
-
-        <script src="/js/jquery.min.js"></script>
+</div>
+</center>
+         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
-          <script src="/js/homepage.js" type="text/javascript">
+        <script src="/js/homepage.js" type="text/javascript">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="/js/userDashboard.js" type="text/javascript">
-
-    </script>
+        <script src="/js/userDashboard.js" type="text/javascript"></script>
   </body>
-
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoK1mDtgeh_BD_kVclDiPgjG8euDTigdE&libraries=places"></script>
-
 </html>

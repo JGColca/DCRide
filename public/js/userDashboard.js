@@ -1,10 +1,8 @@
 let requestButton = document.getElementById('requestButton')
 let requestContainer = document.getElementById('locations')
 let form = document.getElementById('form')
-
 form.style.display = 'none'
 function updateUI() {
-
   let template = `
  <div class="form-group">
  <input type="radio"  id="currentLocation" name='pickupLocation' onchange="test()"/>
@@ -22,22 +20,15 @@ function updateUI() {
  <div class="form-group">
  <input type="hidden" name="latlngDestination" id="latlngDestination"/>
 <div class="form-group">
-
-
- </div>
-
- `
+ </div>`
   form.insertAdjacentHTML('beforeend',template)
   form.style.display = 'block'
   requestButton.style.display ='none'
 let manualLocation=document.getElementById('manualLocation')
 let currentLocation= document.getElementById('currentLocation')
 let locationTextBox = document.getElementById('locationTextBox')
-
 }
-
 function test(){
-
   if(manualLocation.checked){
 locationTextBox.style.backgroundColor = 'white'
     locationTextBox.disabled = false
@@ -47,14 +38,8 @@ locationTextBox.style.backgroundColor = 'white'
     locationTextBox.value = ''
   }
 }
-
-
-
-
 requestButton.addEventListener('click',function(){
-
 updateUI()
-
 })
 //--------Google Map-------------
 //----required configuration--------------
@@ -77,9 +62,6 @@ function initMap() {
     let latlngPickupLocation = document.getElementById('latlngPickupLocation')
     latlngPickupLocation.value = ''
     latlngPickupLocation.value =`${place.geometry.location.lat()},${place.geometry.location.lng()}`
-
-    console.log(place.geometry.location.lat())
-    console.log(place.geometry.location.lng())
   })
   google.maps.event.addListener(autocomplete2,'place_changed',function(){
     if(document.getElementById('submitdiv')){
@@ -92,41 +74,26 @@ function initMap() {
      <div id="submitdiv" class="form-group">
      <input type="submit" class="btn btn-default" onclick="requestRideButtonClick(event)"/>
      </div>
-
     `
     form.insertAdjacentHTML('beforeend',submitButton)
-
-    console.log(place2.geometry.location.lat())
-    console.log(place2.geometry.location.lng())
   })
 
 };
-
 function requestRideButtonClick(event) {
 document.getElementById('submitdiv').insertAdjacentHTML('beforeend',`<h3>Loading...</h3>`)
   event.preventDefault()
-
   let useCurrentLocationRadioButton =  document.getElementById("currentLocation")
-
-
   if(useCurrentLocationRadioButton.checked) {
 latlngPickupLocation.value = ''
     currentLocation(function(coordinates){
-
         let currentLatLngHiddenField = document.getElementById("currentLatLngHiddenField")
         currentLatLngHiddenField.value = `${coordinates.latitude},${coordinates.longitude}`
-
         form.submit()
-
     })
-
   } else {
     form.submit()
   }
-
-
 }
-
 //getting current location of user
 function currentLocation(completion){
   var options = {
@@ -134,21 +101,11 @@ function currentLocation(completion){
     timeout: 30000,
     maximumAge: 0
   };
-
   function success(pos) {
     locationInfo=[]
     var crd = pos.coords;
-
-
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-
 completion(crd)
-
   }
-
   function showError(error) {
      switch(error.code) {
          case error.PERMISSION_DENIED:
@@ -165,8 +122,6 @@ completion(crd)
              break;
      }
   }
-
-
 navigator.geolocation.getCurrentPosition(success, showError, options)
 };
 //--------------------------Google map----------------------------------
