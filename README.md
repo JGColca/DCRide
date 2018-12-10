@@ -18,7 +18,7 @@ https://dcride.herokuapp.com
 ![](admin.gif)
 
 ## Admin credentials to check the admin dashboard:
-username: beyzaAdmin@gmail.com
+username: Admin@gmail.com
 password: Heyhey11
 
 ## Introduction video of the project: 
