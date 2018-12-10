@@ -1,30 +1,26 @@
-
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/animation.css">
-    <title>Location Info</title>
     <link rel="stylesheet" href="/css/customerLocation.css">
+    <title>Location Info</title>
   </head>
   <body>
-    <section class="d-flex flex-column justify-content-between" id="background">
-        <div id="main-top">
-            <div class="">
+      <div id="main-top">
+            <div class="description main">
             </div><nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
     <div class="container-fluid"><a href="/" class="navbar-brand"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse"
-            id="navcol-1">
-
+        <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-
                 {{#username}}
                   <li role="presentation" class="nav-item" id="logout">
                 <div class="dropdown">
@@ -43,10 +39,8 @@
     </div>
 </nav></div>
 <div id="map">
-
 </div>
 <div id="output">
-
 </div>
 <input type="hidden" id="carIdHiddenField" value="{{carid}}" />
 <input type="hidden" id="closestCarLatHiddenField" value="{{closestCarLat}}" />
@@ -57,12 +51,11 @@
 <input type="hidden" id="currentLocationLngHiddenField" value="{{currentLocationLng}}" />
 <input type="hidden" id="destinationLatHiddenField" value="{{destinationLat}}" />
 <input type="hidden" id="destinationLngHiddenField" value="{{destinationLng}}" />
-<script src="/js/customerLocation.js" type="text/javascript"></script>
-  </body>
-  <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoK1mDtgeh_BD_kVclDiPgjG8euDTigdE&callback=initMap">
-</script>
-
-
-
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="/js/customerLocation.js" type="text/javascript"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoK1mDtgeh_BD_kVclDiPgjG8euDTigdE&callback=initMap"></script>
+</body>
 </html>
