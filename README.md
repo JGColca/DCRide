@@ -9,7 +9,7 @@
    From the authentication side, the app is able to distinguish between logins from a regular user and an admin to provide the corresponding dashboard page for the respective login. Validation are also done to check credentials in the registration process to make sure that they were not used before and that strong passwords are used.
    
 ## Live link: 
-dcride.herokuapp.com
+https://dcride.herokuapp.com
 
 ## User login and dashboard: 
 ![](dashboard_1.gif)
